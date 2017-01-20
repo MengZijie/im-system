@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+       ">
+
+    <!--todo: aop配置-->
+    <!--todo: userFilter-->
+
+    <context:property-placeholder location="classpath:/config.properties"/>
+    <context:component-scan base-package="com.mzj.im_server"/>
+
+    <bean id="modulesMap" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="webAppPath" value="${webAppPath}"/>
+                <entry key="webImagesPath" value="${webImagesPath}"/>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="com.mysql.jdbc.Driver"/>
+        <property name="jdbcUrl" value="${mysql.url}"/>
+        <property name="user" value="${mysql.username}"/>
+        <property name="password" value="${mysql.password}"/>
+        <property name="initialPoolSize" value="2"/>
+        <property name="minPoolSize" value="1"/>
+        <property name="maxPoolSize" value="20"/>
+        <property name="maxIdleTime" value="1800"/>
+        <property name="acquireIncrement" value="2"/>
+        <property name="maxStatements" value="0"/>
+        <property name="idleConnectionTestPeriod" value="1800"/>
+        <property name="acquireRetryAttempts" value="30"/>
+        <property name="breakAfterAcquireFailure" value="false"/>
+        <property name="testConnectionOnCheckout" value="false"/>
+    </bean>
+
+    <!--mybatis注解-->
+    <!--<bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">-->
+        <!--<property name="basePackage" value="com.ob.post.dao"/>-->
+        <!--<property name="annotationClass" value="org.springframework.stereotype.Repository"/>-->
+    <!--</bean>-->
+
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="typeAliasesPackage" value="com.mzj.im_server.dao"/>
+        <property name="mapperLocations"
+                  value="classpath*:mapper/*_mapper.xml"/>
+    </bean>
+
+    <!--事务-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+
+</beans>
