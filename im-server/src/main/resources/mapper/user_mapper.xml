@@ -1,0 +1,569 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mzj.im.dao.UserDAO">
+    <resultMap id="userMap" type="com.mzj.im.model.po.UserPO">
+        <id column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="nick_name" property="nickName"/>
+        <result column="password" property="password"/>
+        <result column="salt" property="salt"/>
+        <result column="photo" property="photo"/>
+        <result column="sign" property="sign"/>
+        <result column="email" property="email"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="is_delete" property="isDelete"/>
+    </resultMap>
+    <sql id="all_column">
+        id, username, nick_name, password, salt, photo, sign, email, create_time, update_time, is_delete
+    </sql>
+
+    <sql id="safe_column">
+        id, username, nick_name, photo, sign, email, create_time, update_time
+    </sql>
+
+    <!-- 查询用户map -->
+    <select id="selectUser" parameterType="com.mzj.im.model.po.UserPO" resultMap="userMap">
+        SELECT
+        <include refid="all_column"/>
+        FROM t_user
+        WHERE 1=1
+        <if test='isDelete == "Y" || isDelete =="y"'>
+            AND isDelete = 'Y'
+        </if>
+        <if test='isDelete == "N" || isDelete =="n"'>
+            AND isDelete = 'N'
+        </if>
+        <if test="username != null">
+            AND username = #{username}
+        </if>
+        <if test="username != null">
+            AND username = #{username}
+        </if>
+        <if test="nikeName != null">
+            AND nick_name = #{nikeName}
+        </if>
+    </select>
+
+    <!--查询用户通过账号-->
+    <select id="selectUserByUsername"
+            parameterType="java.lang.String"
+            resultType="com.mzj.im.model.po.UserPO">
+        SELECT
+        <include refid="all_column"/>
+        FROM t_user
+        WHERE username = #{username}
+        LIMIT 0,1
+    </select>
+
+    <insert id="insertOneUser" parameterType="com.mzj.im.model.po.UserPO">
+        INSERT INTO t_user (username, password, nick_name, email) VALUES (#{username}, #{password}, #{nickName}, #{email})
+    </insert>
+
+    <update id="updateOneUserByUsername" parameterType="com.mzj.im.model.po.UserPO">
+        <if test='username!=null'>
+            UPDATE t_user
+            <set>
+                <if test='nick_name!=null'>
+                    nick_name = #{nickName},
+                </if>
+                <if test='password!=null'>
+                    nick_name = #{password},
+                </if>
+                <if test='photo!=null'>
+                    nick_name = #{photo},
+                </if>
+                <if test='sign!=null'>
+                    nick_name = #{sign},
+                </if>
+                <if test='email!=null'>
+                    nick_name = #{email},
+                </if>
+                <if test='is_delete!=null'>
+                    nick_name = #{nickName},
+                </if>
+            </set>
+            WHERE username = #{username}
+        </if>
+    </update>
+    <!--&lt;!&ndash; 根据userCd查询改用户关注的用户总记录数 &ndash;&gt;-->
+    <!--<select id="selectUserByUsername" resultType="java.lang.Integer" parameterType="java.lang.String">-->
+    <!--select count(userCd)-->
+    <!--from rb_userInfo-->
+    <!--where rb_userInfo.userCd in (-->
+    <!--select aboutCd from rb_like-->
+    <!--where rb_like.creatorCd=#{userCd,jdbcType=VARCHAR}-->
+    <!--and likeType='2'-->
+    <!--)-->
+    <!--</select>-->
+
+    <!--&lt;!&ndash; 根据userCd查询改用户关注的用户List &ndash;&gt;-->
+    <!--<select id="selectUserByUserCdAndPageVo" resultMap="BaseResultMap">-->
+    <!--select-->
+    <!--<include refid="Base_Column_List"/>-->
+    <!--from rb_userInfo-->
+    <!--where rb_userInfo.userCd in (-->
+    <!--select aboutCd from rb_like-->
+    <!--where rb_like.creatorCd=#{userCd,jdbcType=VARCHAR}-->
+    <!--and likeType='2'-->
+    <!--)-->
+    <!--limit #{pagevo.startIndex},#{pagevo.pageSize}-->
+    <!--</select>-->
+
+    <!--&lt;!&ndash; 更新by userCd &ndash;&gt;-->
+    <!--<update id="updateByCdSelective" parameterType="cn.ssm.test.domain.UserInfo">-->
+    <!--update rb_userInfo-->
+    <!--<set>-->
+    <!--<if test="usercd != null">-->
+    <!--userCd = #{usercd,jdbcType=VARCHAR},-->
+    <!--</if>-->
+    <!--<if test="name != null">-->
+    <!--name = #{name,jdbcType=VARCHAR},-->
+    <!--</if>-->
+    <!--<if test="spell != null">-->
+    <!--spell = #{spell,jdbcType=VARCHAR},-->
+    <!--</if>-->
+    <!--<if test="username != null">-->
+    <!--userName = #{username,jdbcType=VARCHAR},-->
+    <!--</if>-->
+    <!--<if test="pwd != null">-->
+    <!--pwd = #{pwd,jdbcType=VARCHAR},-->
+    <!--</if>-->
+    <!--<if test="question != null">-->
+    <!--question = #{question,jdbcType=VARCHAR},-->
+    <!--</if>-->
+    <!--<if test="password != null">-->
+    <!--password = #{password,jdbcType=VARCHAR},-->
+    <!--</if>-->
+    <!--<if test="email != null">-->
+    <!--email = #{email,jdbcType=VARCHAR},-->
+    <!--</if>-->
+    <!--<if test="phone != null">-->
+    <!--phone = #{phone,jdbcType=VARCHAR},-->
+    <!--</if>-->
+    <!--<if test="sex != null">-->
+    <!--sex = #{sex,jdbcType=SMALLINT},-->
+    <!--</if>-->
+    <!--<if test="birthday != null">-->
+    <!--birthday = #{birthday,jdbcType=BIGINT},-->
+    <!--</if>-->
+    <!--<if test="address != null">-->
+    <!--address = #{address,jdbcType=VARCHAR},-->
+    <!--</if>-->
+    <!--<if test="status != null">-->
+    <!--status = #{status,jdbcType=SMALLINT},-->
+    <!--</if>-->
+    <!--<if test="isvip != null">-->
+    <!--isVIP = #{isvip,jdbcType=SMALLINT},-->
+    <!--</if>-->
+    <!--<if test="type != null">-->
+    <!--type = #{type,jdbcType=SMALLINT},-->
+    <!--</if>-->
+    <!--<if test="userico != null">-->
+    <!--userIco = #{userico,jdbcType=VARCHAR},-->
+    <!--</if>-->
+    <!--<if test="credit != null">-->
+    <!--credit = #{credit,jdbcType=INTEGER},-->
+    <!--</if>-->
+    <!--<if test="identityno != null">-->
+    <!--identityNo = #{identityno,jdbcType=VARCHAR},-->
+    <!--</if>-->
+    <!--<if test="createdate != null">-->
+    <!--createDate = #{createdate,jdbcType=BIGINT},-->
+    <!--</if>-->
+    <!--<if test="creatorcd != null">-->
+    <!--creatorCd = #{creatorcd,jdbcType=VARCHAR},-->
+    <!--</if>-->
+    <!--<if test="updatedate != null">-->
+    <!--updateDate = #{updatedate,jdbcType=BIGINT},-->
+    <!--</if>-->
+    <!--<if test="updatorcd != null">-->
+    <!--updatorCd = #{updatorcd,jdbcType=VARCHAR},-->
+    <!--</if>-->
+    <!--<if test="remark != null">-->
+    <!--remark = #{remark,jdbcType=VARCHAR},-->
+    <!--</if>-->
+    <!--<if test="prep1 != null">-->
+    <!--prep1 = #{prep1,jdbcType=VARCHAR},-->
+    <!--</if>-->
+    <!--<if test="qqnumber != null">-->
+    <!--qqnumber = #{qqnumber,jdbcType=VARCHAR},-->
+    <!--</if>-->
+    <!--</set>-->
+    <!--where userCd = #{usercd,jdbcType=VARCHAR}-->
+    <!--</update>-->
+
+    <!--&lt;!&ndash; 根据userCd查询对应用户信息 &ndash;&gt;-->
+    <!--<select id="selectUserByCd" resultType="cn.ssm.test.vo.UserVO" parameterType="java.lang.String">-->
+    <!--select-->
+    <!--<include refid="Vo_Column_List"/>-->
+    <!--from rb_userInfo-->
+    <!--where userCd = #{userCd,jdbcType=VARCHAR}-->
+    <!--</select>-->
+
+    <!--&lt;!&ndash; 根据userName和pwd查询对应用户信息 &ndash;&gt;-->
+    <!--<select id="selectUserByNmAndPsd" resultType="cn.ssm.test.vo.UserVO">-->
+    <!--select-->
+    <!--<include refid="Vo_Column_List"/>-->
+    <!--from rb_userInfo-->
+    <!--where userCd = #{usercd,jdbcType=VARCHAR} and pwd = #{pwd,jdbcType=VARCHAR}-->
+    <!--</select>-->
+
+    <!--&lt;!&ndash; 根据goodsCd查询对应用户信息 &ndash;&gt;-->
+    <!--<select id="selectByGoodsCd" resultMap="BaseResultMap" parameterType="java.lang.String">-->
+    <!--select-->
+    <!--<include refid="Base_Column_List"/>-->
+    <!--from rb_userInfo-->
+    <!--left join rb_goods on rb_goods.creatorCd = rb_userInfo.userCd-->
+    <!--where rb_goods.goodsCd = #{goodsCd,jdbcType=VARCHAR}-->
+    <!--</select>-->
+
+    <!--&lt;!&ndash; 根据applyCd查询对应用户信息 &ndash;&gt;-->
+    <!--<select id="selectByApplyCd" resultMap="BaseResultMap" parameterType="java.lang.String">-->
+    <!--select-->
+    <!--<include refid="Base_Column_List"/>-->
+    <!--from rb_userInfo-->
+    <!--left join rb_ex_apply on rb_ex_apply.creatorCd = rb_userInfo.userCd-->
+    <!--where rb_ex_apply.applyCd = #{applyCd,jdbcType=VARCHAR}-->
+    <!--</select>-->
+
+    <!--<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">-->
+    <!--select-->
+    <!--<include refid="Base_Column_List"/>-->
+    <!--from rb_userInfo-->
+    <!--where ID = #{id,jdbcType=INTEGER}-->
+    <!--</select>-->
+    <!--<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">-->
+    <!--delete from rb_userInfo-->
+    <!--where ID = #{id,jdbcType=INTEGER}-->
+    <!--</delete>-->
+    <!--<insert id="insert" parameterType="cn.ssm.test.domain.UserInfo">-->
+    <!--insert into rb_userInfo (ID, userCd, name,-->
+    <!--spell, userName, pwd,-->
+    <!--question, password, email,-->
+    <!--phone, sex, birthday,-->
+    <!--address, status, isVIP,-->
+    <!--type, userIco, credit,-->
+    <!--identityNo, createDate, creatorCd,-->
+    <!--updateDate, updatorCd, remark,-->
+    <!--prep1, qqnumber)-->
+    <!--values (#{id,jdbcType=INTEGER}, #{usercd,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR},-->
+    <!--#{spell,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{pwd,jdbcType=VARCHAR},-->
+    <!--#{question,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},-->
+    <!--#{phone,jdbcType=VARCHAR}, #{sex,jdbcType=SMALLINT}, #{birthday,jdbcType=BIGINT},-->
+    <!--#{address,jdbcType=VARCHAR}, #{status,jdbcType=SMALLINT}, #{isvip,jdbcType=SMALLINT},-->
+    <!--#{type,jdbcType=SMALLINT}, #{userico,jdbcType=VARCHAR}, #{credit,jdbcType=INTEGER},-->
+    <!--#{identityno,jdbcType=VARCHAR}, #{createdate,jdbcType=BIGINT}, #{creatorcd,jdbcType=VARCHAR},-->
+    <!--#{updatedate,jdbcType=BIGINT}, #{updatorcd,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR},-->
+    <!--#{prep1,jdbcType=VARCHAR}, #{qqnumber,jdbcType=VARCHAR})-->
+    <!--</insert>-->
+    <!--<insert id="insertSelective" parameterType="cn.ssm.test.domain.UserInfo">-->
+    <!--insert into rb_userInfo-->
+    <!--<trim prefix="(" suffix=")" suffixOverrides=",">-->
+    <!--<if test="id != null">-->
+    <!--ID,-->
+    <!--</if>-->
+    <!--<if test="usercd != null">-->
+    <!--userCd,-->
+    <!--</if>-->
+    <!--<if test="name != null">-->
+    <!--name,-->
+    <!--</if>-->
+    <!--<if test="spell != null">-->
+    <!--spell,-->
+    <!--</if>-->
+    <!--<if test="username != null">-->
+    <!--userName,-->
+    <!--</if>-->
+    <!--<if test="pwd != null">-->
+    <!--pwd,-->
+    <!--</if>-->
+    <!--<if test="question != null">-->
+    <!--question,-->
+    <!--</if>-->
+    <!--<if test="password != null">-->
+    <!--password,-->
+    <!--</if>-->
+    <!--<if test="email != null">-->
+    <!--email,-->
+    <!--</if>-->
+    <!--<if test="phone != null">-->
+    <!--phone,-->
+    <!--</if>-->
+    <!--<if test="sex != null">-->
+    <!--sex,-->
+    <!--</if>-->
+    <!--<if test="birthday != null">-->
+    <!--birthday,-->
+    <!--</if>-->
+    <!--<if test="address != null">-->
+    <!--address,-->
+    <!--</if>-->
+    <!--<if test="status != null">-->
+    <!--status,-->
+    <!--</if>-->
+    <!--<if test="isvip != null">-->
+    <!--isVIP,-->
+    <!--</if>-->
+    <!--<if test="type != null">-->
+    <!--type,-->
+    <!--</if>-->
+    <!--<if test="userico != null">-->
+    <!--userIco,-->
+    <!--</if>-->
+    <!--<if test="credit != null">-->
+    <!--credit,-->
+    <!--</if>-->
+    <!--<if test="identityno != null">-->
+    <!--identityNo,-->
+    <!--</if>-->
+    <!--<if test="createdate != null">-->
+    <!--createDate,-->
+    <!--</if>-->
+    <!--<if test="creatorcd != null">-->
+    <!--creatorCd,-->
+    <!--</if>-->
+    <!--<if test="updatedate != null">-->
+    <!--updateDate,-->
+    <!--</if>-->
+    <!--<if test="updatorcd != null">-->
+    <!--updatorCd,-->
+    <!--</if>-->
+    <!--<if test="remark != null">-->
+    <!--remark,-->
+    <!--</if>-->
+    <!--<if test="prep1 != null">-->
+    <!--prep1,-->
+    <!--</if>-->
+    <!--<if test="qqnumber != null">-->
+    <!--qqnumber,-->
+    <!--</if>-->
+    <!--</trim>-->
+    <!--<trim prefix="values (" suffix=")" suffixOverrides=",">-->
+    <!--<if test="id != null">-->
+    <!--#{id,jdbcType=INTEGER},-->
+    <!--</if>-->
+    <!--<if test="usercd != null">-->
+    <!--#{usercd,jdbcType=VARCHAR},-->
+    <!--</if>-->
+    <!--<if test="name != null">-->
+    <!--#{name,jdbcType=VARCHAR},-->
+    <!--</if>-->
+    <!--<if test="spell != null">-->
+    <!--#{spell,jdbcType=VARCHAR},-->
+    <!--</if>-->
+    <!--<if test="username != null">-->
+    <!--#{username,jdbcType=VARCHAR},-->
+    <!--</if>-->
+    <!--<if test="pwd != null">-->
+    <!--#{pwd,jdbcType=VARCHAR},-->
+    <!--</if>-->
+    <!--<if test="question != null">-->
+    <!--#{question,jdbcType=VARCHAR},-->
+    <!--</if>-->
+    <!--<if test="password != null">-->
+    <!--#{password,jdbcType=VARCHAR},-->
+    <!--</if>-->
+    <!--<if test="email != null">-->
+    <!--#{email,jdbcType=VARCHAR},-->
+    <!--</if>-->
+    <!--<if test="phone != null">-->
+    <!--#{phone,jdbcType=VARCHAR},-->
+    <!--</if>-->
+    <!--<if test="sex != null">-->
+    <!--#{sex,jdbcType=SMALLINT},-->
+    <!--</if>-->
+    <!--<if test="birthday != null">-->
+    <!--#{birthday,jdbcType=BIGINT},-->
+    <!--</if>-->
+    <!--<if test="address != null">-->
+    <!--#{address,jdbcType=VARCHAR},-->
+    <!--</if>-->
+    <!--<if test="status != null">-->
+    <!--#{status,jdbcType=SMALLINT},-->
+    <!--</if>-->
+    <!--<if test="isvip != null">-->
+    <!--#{isvip,jdbcType=SMALLINT},-->
+    <!--</if>-->
+    <!--<if test="type != null">-->
+    <!--#{type,jdbcType=SMALLINT},-->
+    <!--</if>-->
+    <!--<if test="userico != null">-->
+    <!--#{userico,jdbcType=VARCHAR},-->
+    <!--</if>-->
+    <!--<if test="credit != null">-->
+    <!--#{credit,jdbcType=INTEGER},-->
+    <!--</if>-->
+    <!--<if test="identityno != null">-->
+    <!--#{identityno,jdbcType=VARCHAR},-->
+    <!--</if>-->
+    <!--<if test="createdate != null">-->
+    <!--#{createdate,jdbcType=BIGINT},-->
+    <!--</if>-->
+    <!--<if test="creatorcd != null">-->
+    <!--#{creatorcd,jdbcType=VARCHAR},-->
+    <!--</if>-->
+    <!--<if test="updatedate != null">-->
+    <!--#{updatedate,jdbcType=BIGINT},-->
+    <!--</if>-->
+    <!--<if test="updatorcd != null">-->
+    <!--#{updatorcd,jdbcType=VARCHAR},-->
+    <!--</if>-->
+    <!--<if test="remark != null">-->
+    <!--#{remark,jdbcType=VARCHAR},-->
+    <!--</if>-->
+    <!--<if test="prep1 != null">-->
+    <!--#{prep1,jdbcType=VARCHAR},-->
+    <!--</if>-->
+    <!--<if test="qqnumber != null">-->
+    <!--#{qqnumber,jdbcType=VARCHAR},-->
+    <!--</if>-->
+    <!--</trim>-->
+    <!--</insert>-->
+    <!--<update id="updateByPrimaryKeySelective" parameterType="cn.ssm.test.domain.UserInfo">-->
+    <!--update rb_userInfo-->
+    <!--<set>-->
+    <!--<if test="usercd != null">-->
+    <!--userCd = #{usercd,jdbcType=VARCHAR},-->
+    <!--</if>-->
+    <!--<if test="name != null">-->
+    <!--name = #{name,jdbcType=VARCHAR},-->
+    <!--</if>-->
+    <!--<if test="spell != null">-->
+    <!--spell = #{spell,jdbcType=VARCHAR},-->
+    <!--</if>-->
+    <!--<if test="username != null">-->
+    <!--userName = #{username,jdbcType=VARCHAR},-->
+    <!--</if>-->
+    <!--<if test="pwd != null">-->
+    <!--pwd = #{pwd,jdbcType=VARCHAR},-->
+    <!--</if>-->
+    <!--<if test="question != null">-->
+    <!--question = #{question,jdbcType=VARCHAR},-->
+    <!--</if>-->
+    <!--<if test="password != null">-->
+    <!--password = #{password,jdbcType=VARCHAR},-->
+    <!--</if>-->
+    <!--<if test="email != null">-->
+    <!--email = #{email,jdbcType=VARCHAR},-->
+    <!--</if>-->
+    <!--<if test="phone != null">-->
+    <!--phone = #{phone,jdbcType=VARCHAR},-->
+    <!--</if>-->
+    <!--<if test="sex != null">-->
+    <!--sex = #{sex,jdbcType=SMALLINT},-->
+    <!--</if>-->
+    <!--<if test="birthday != null">-->
+    <!--birthday = #{birthday,jdbcType=BIGINT},-->
+    <!--</if>-->
+    <!--<if test="address != null">-->
+    <!--address = #{address,jdbcType=VARCHAR},-->
+    <!--</if>-->
+    <!--<if test="status != null">-->
+    <!--status = #{status,jdbcType=SMALLINT},-->
+    <!--</if>-->
+    <!--<if test="isvip != null">-->
+    <!--isVIP = #{isvip,jdbcType=SMALLINT},-->
+    <!--</if>-->
+    <!--<if test="type != null">-->
+    <!--type = #{type,jdbcType=SMALLINT},-->
+    <!--</if>-->
+    <!--<if test="userico != null">-->
+    <!--userIco = #{userico,jdbcType=VARCHAR},-->
+    <!--</if>-->
+    <!--<if test="credit != null">-->
+    <!--credit = #{credit,jdbcType=INTEGER},-->
+    <!--</if>-->
+    <!--<if test="identityno != null">-->
+    <!--identityNo = #{identityno,jdbcType=VARCHAR},-->
+    <!--</if>-->
+    <!--<if test="createdate != null">-->
+    <!--createDate = #{createdate,jdbcType=BIGINT},-->
+    <!--</if>-->
+    <!--<if test="creatorcd != null">-->
+    <!--creatorCd = #{creatorcd,jdbcType=VARCHAR},-->
+    <!--</if>-->
+    <!--<if test="updatedate != null">-->
+    <!--updateDate = #{updatedate,jdbcType=BIGINT},-->
+    <!--</if>-->
+    <!--<if test="updatorcd != null">-->
+    <!--updatorCd = #{updatorcd,jdbcType=VARCHAR},-->
+    <!--</if>-->
+    <!--<if test="remark != null">-->
+    <!--remark = #{remark,jdbcType=VARCHAR},-->
+    <!--</if>-->
+    <!--<if test="prep1 != null">-->
+    <!--prep1 = #{prep1,jdbcType=VARCHAR},-->
+    <!--</if>-->
+    <!--<if test="qqnumber != null">-->
+    <!--qqnumber = #{qqnumber,jdbcType=VARCHAR},-->
+    <!--</if>-->
+    <!--</set>-->
+    <!--where ID = #{id,jdbcType=INTEGER}-->
+    <!--</update>-->
+    <!--<update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.ssm.test.domain.UserInfo">-->
+    <!--update rb_userInfo-->
+    <!--set userCd = #{usercd,jdbcType=VARCHAR},-->
+    <!--name = #{name,jdbcType=VARCHAR},-->
+    <!--spell = #{spell,jdbcType=VARCHAR},-->
+    <!--userName = #{username,jdbcType=VARCHAR},-->
+    <!--pwd = #{pwd,jdbcType=VARCHAR},-->
+    <!--question = #{question,jdbcType=VARCHAR},-->
+    <!--password = #{password,jdbcType=VARCHAR},-->
+    <!--email = #{email,jdbcType=VARCHAR},-->
+    <!--phone = #{phone,jdbcType=VARCHAR},-->
+    <!--sex = #{sex,jdbcType=SMALLINT},-->
+    <!--birthday = #{birthday,jdbcType=BIGINT},-->
+    <!--address = #{address,jdbcType=VARCHAR},-->
+    <!--status = #{status,jdbcType=SMALLINT},-->
+    <!--isVIP = #{isvip,jdbcType=SMALLINT},-->
+    <!--type = #{type,jdbcType=SMALLINT},-->
+    <!--userIco = #{userico,jdbcType=VARCHAR},-->
+    <!--credit = #{credit,jdbcType=INTEGER},-->
+    <!--identityNo = #{identityno,jdbcType=VARCHAR},-->
+    <!--createDate = #{createdate,jdbcType=BIGINT},-->
+    <!--creatorCd = #{creatorcd,jdbcType=VARCHAR},-->
+    <!--updateDate = #{updatedate,jdbcType=BIGINT},-->
+    <!--updatorCd = #{updatorcd,jdbcType=VARCHAR},-->
+    <!--remark = #{remark,jdbcType=VARCHAR},-->
+    <!--prep1 = #{prep1,jdbcType=VARCHAR},-->
+    <!--qqnumber = #{qqnumber,jdbcType=VARCHAR}-->
+    <!--where ID = #{id,jdbcType=INTEGER}-->
+    <!--</update>-->
+    <!--<update id="updateByPrimaryKey" parameterType="cn.ssm.test.domain.UserInfo">-->
+    <!--update rb_userInfo-->
+    <!--set userCd = #{usercd,jdbcType=VARCHAR},-->
+    <!--name = #{name,jdbcType=VARCHAR},-->
+    <!--spell = #{spell,jdbcType=VARCHAR},-->
+    <!--userName = #{username,jdbcType=VARCHAR},-->
+    <!--pwd = #{pwd,jdbcType=VARCHAR},-->
+    <!--question = #{question,jdbcType=VARCHAR},-->
+    <!--password = #{password,jdbcType=VARCHAR},-->
+    <!--email = #{email,jdbcType=VARCHAR},-->
+    <!--phone = #{phone,jdbcType=VARCHAR},-->
+    <!--sex = #{sex,jdbcType=SMALLINT},-->
+    <!--birthday = #{birthday,jdbcType=BIGINT},-->
+    <!--address = #{address,jdbcType=VARCHAR},-->
+    <!--status = #{status,jdbcType=SMALLINT},-->
+    <!--isVIP = #{isvip,jdbcType=SMALLINT},-->
+    <!--type = #{type,jdbcType=SMALLINT},-->
+    <!--userIco = #{userico,jdbcType=VARCHAR},-->
+    <!--credit = #{credit,jdbcType=INTEGER},-->
+    <!--identityNo = #{identityno,jdbcType=VARCHAR},-->
+    <!--createDate = #{createdate,jdbcType=BIGINT},-->
+    <!--creatorCd = #{creatorcd,jdbcType=VARCHAR},-->
+    <!--updateDate = #{updatedate,jdbcType=BIGINT},-->
+    <!--updatorCd = #{updatorcd,jdbcType=VARCHAR},-->
+    <!--remark = #{remark,jdbcType=VARCHAR},-->
+    <!--prep1 = #{prep1,jdbcType=VARCHAR}-->
+    <!--where ID = #{id,jdbcType=INTEGER}-->
+    <!--</update>-->
+    <!--&lt;!&ndash;             扩展方法                                              &ndash;&gt;-->
+    <!--&lt;!&ndash; 根据goodsCd查询对应卖家信息 &ndash;&gt;-->
+    <!--<select id="selectByUsername" resultMap="BaseResultMap" parameterType="java.lang.String">-->
+    <!--select-->
+    <!--<include refid="Base_Column_List"/>-->
+    <!--from rb_userInfo-->
+    <!--where username = #{username,jdbcType=VARCHAR} and status=1-->
+    <!--</select>-->
+</mapper>
