@@ -1,0 +1,12 @@
+#left-sidebar-nav {
+    position: fixed;
+    width: 100px;
+    left: 180px;
+    z-index: 999;
+    height: auto
+}
+
+#left-sidebar-nav span.badge.new {
+    line-height: 20px;
+    margin-top: 11px
+}

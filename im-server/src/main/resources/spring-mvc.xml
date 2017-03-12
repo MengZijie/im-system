@@ -28,6 +28,11 @@
     <!-- 当在web.xml中DispatcherServlet使用<url-pattern>/</url-pattern>映射时，能映射静态资源 -->
     <mvc:default-servlet-handler/>
 
+    <mvc:resources mapping="/img/" location="/img/**" />
+    <mvc:resources mapping="/js/" location="/js/**" />
+    <mvc:resources mapping="/css/" location="/css/**" />
+    <mvc:resources mapping="/font/" location="/font/**" />
+
     <!-- 对模型视图名称的解析，即在模型视图名称添加前后缀 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:prefix="/WEB-INF/view/" p:suffix=".html"/>
 

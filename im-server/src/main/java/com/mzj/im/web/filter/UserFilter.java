@@ -20,6 +20,7 @@ public class UserFilter implements Filter {
         staticUri.add("/user/login");
         staticUri.add("/user/register");
         staticUri.add("/home");
+        staticUri.add("/im-client.html");
     }
 
     @Override
@@ -29,14 +30,14 @@ public class UserFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        HttpSession session = ((HttpServletRequest) request).getSession();
-        String uri = ((HttpServletRequest) request).getRequestURI();
-        if (!staticUri.contains(uri) && ObjectUtil.isNotNull(session.getAttribute("user"))) {
-            session.setAttribute("requestUrl", uri);
-            System.out.println(((HttpServletRequest) request).getRequestURI());
-            ((HttpServletResponse) response).sendRedirect("/user/login");
-            return;
-        }
+//        HttpSession session = ((HttpServletRequest) request).getSession();
+//        String uri = ((HttpServletRequest) request).getRequestURI();
+//        if (!staticUri.contains(uri) && ObjectUtil.isNotNull(session.getAttribute("user"))) {
+//            session.setAttribute("requestUrl", uri);
+//            System.out.println(((HttpServletRequest) request).getRequestURI());
+//            ((HttpServletResponse) response).sendRedirect("/user/login");
+//            return;
+//        }
         chain.doFilter(request, response);
     }
 
