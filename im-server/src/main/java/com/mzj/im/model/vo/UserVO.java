@@ -33,12 +33,26 @@ public class UserVO extends UserPO {
         }
     }
 
+    public boolean isOnline = false;
+
     public boolean isLock() {
         return "Y".equals(StringUtils.upperCase(String.valueOf(getIsDelete())));
     }
 
     public boolean isEmpty() {
         return isEmpty;
+    }
+
+    public boolean isOnline() {
+        return isOnline;
+    }
+
+    public boolean getIsOnline() {
+        return isOnline;
+    }
+
+    public void setOnline(boolean online) {
+        isOnline = online;
     }
 
     public void setNotEmpty() {

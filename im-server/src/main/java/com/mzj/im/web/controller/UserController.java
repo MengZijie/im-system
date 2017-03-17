@@ -3,6 +3,7 @@ package com.mzj.im.web.controller;
 import com.mzj.im.model.po.UserPO;
 import com.mzj.im.model.vo.UserVO;
 import com.mzj.im.service.UserService;
+import com.mzj.im.util.ObjectUtil;
 import com.mzj.im.util.dic.*;
 import net.sf.json.JSONArray;
 import org.apache.commons.lang.StringUtils;
@@ -35,8 +36,8 @@ public class UserController {
     public String doLogin(HttpSession Session,
                           @RequestParam("username") String username,
                           @RequestParam("password") String password) {
-        UserVO user = userService.getUserByUsername(username);
-        if (user.getPassword().equals(password)) {
+        UserVO user = userService.doLogin(username,password);
+        if (ObjectUtil.isNotNull(user)) {
             Session.setAttribute("user", user);
             String uri = (String) Session.getAttribute("requestUri");
             if (StringUtils.isEmpty(uri)) {

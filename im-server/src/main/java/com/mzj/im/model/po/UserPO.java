@@ -1,11 +1,12 @@
 package com.mzj.im.model.po;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 /**
  * Created by OB on 2017/2/3.
  */
-public class UserPO {
+public class UserPO implements Serializable {
     private long id;
     private String username;
     private String nickName;

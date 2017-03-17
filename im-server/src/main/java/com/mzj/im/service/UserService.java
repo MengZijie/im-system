@@ -1,6 +1,7 @@
 package com.mzj.im.service;
 
 import com.mzj.im.biz.UserBiz;
+import com.mzj.im.dao.redis.RedisUserDAO;
 import com.mzj.im.model.po.UserPO;
 import com.mzj.im.model.vo.UserVO;
 import com.mzj.im.util.dic.OperateResult;
@@ -17,6 +18,19 @@ public class UserService {
 
     @Autowired
     private UserBiz userBiz;
+
+    @Autowired
+    private RedisUserDAO redisUserDAO;
+
+    public UserVO doLogin(String username, String password){
+        UserVO user = getUserByUsername(username);
+        if(!user.isEmpty() && password.equals(user.getPassword())){
+            user.setOnline(true);
+            redisUserDAO.put(user);
+            return user;
+        }
+        return null;
+    }
 
     public UserVO getUserByUsername(String username) {
         return new UserVO(userBiz.getUserByUsername(username));
