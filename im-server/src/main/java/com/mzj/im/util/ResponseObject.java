@@ -1,7 +1,7 @@
 package com.mzj.im.util;
 
-import com.alibaba.fastjson.JSONObject;
 import com.mzj.im.util.dic.OperateResult;
+import net.sf.json.JSONObject;
 
 /**
  * Created by OB on 2017/2/7.

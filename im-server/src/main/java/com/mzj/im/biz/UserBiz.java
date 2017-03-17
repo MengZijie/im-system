@@ -10,7 +10,8 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by OB on 2017/2/3.
@@ -20,7 +21,7 @@ public class UserBiz {
     @Autowired
     private UserDAO userDAO;
 
-    public HashMap<Long, UserPO> getUserMap(UserPO user) {
+    public Map<Long, UserPO> getUserMap(UserPO user) {
         if (ObjectUtil.isNull(user)) {
             user = new UserPO();
         }
@@ -34,6 +35,12 @@ public class UserBiz {
         return userDAO.selectUserByUsername(username);
     }
 
+    public List<UserPO> getUserList(UserPO user){
+        if(ObjectUtil.isNull(user)){
+            return null;
+        }
+        return userDAO.selectUserList(user);
+    }
     /**
      * 添加用户
      *

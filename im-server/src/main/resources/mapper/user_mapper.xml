@@ -15,7 +15,17 @@
         <result column="is_delete" property="isDelete"/>
     </resultMap>
     <sql id="all_column">
-        id, username, nick_name, password, salt, photo, sign, email, create_time, update_time, is_delete
+        id AS id,
+        username AS  username,
+        nick_name AS nickName,
+        password AS password,
+        salt AS salt,
+        photo AS photo,
+        sign AS sign,
+        email AS email,
+        create_time AS createTime,
+        update_time AS updateTime,
+        is_delete AS isDelete
     </sql>
 
     <sql id="safe_column">
@@ -37,11 +47,33 @@
         <if test="username != null">
             AND username = #{username}
         </if>
+        <if test="email != null">
+            AND email = #{email}
+        </if>
+        <if test="nickName != null">
+            AND nick_name = #{nickName}
+        </if>
+    </select>
+
+    <select id="selectUserList" parameterType="com.mzj.im.model.po.UserPO" resultType="com.mzj.im.model.po.UserPO">
+        SELECT
+        <include refid="all_column" />
+        FROM t_user
+        WHERE 1 = 1
+        <if test='isDelete == "Y" || isDelete =="y"'>
+            AND isDelete = 'Y'
+        </if>
+        <if test='isDelete == "N" || isDelete =="n"'>
+            AND isDelete = 'N'
+        </if>
         <if test="username != null">
             AND username = #{username}
         </if>
-        <if test="nikeName != null">
-            AND nick_name = #{nikeName}
+        <if test="email != null">
+            AND email = #{email}
+        </if>
+        <if test="nickName != null">
+            AND nick_name = #{nickName}
         </if>
     </select>
 

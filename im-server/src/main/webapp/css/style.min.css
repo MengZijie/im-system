@@ -25,6 +25,10 @@ select {
 }
 
 /************************************************/
+nav{
+    box-shadow: ;
+}
+
 .msg-type-tab {
     background-color: #29b6f6;
 }
@@ -37,6 +41,30 @@ select {
     height: 60px;
     width: 60px;
     border-radius: 30px;
+}
+
+.msg-type-tab-selected img {
+    height: 48px;
+    width: auto;
+}
+
+.msg-type-tab img {
+    height: 48px;
+    width: auto;
+}
+
+#contacts-list li {
+    height: 80px;
+    margin-bottom: 15px;
+}
+
+#contacts-list li .card {
+    height: 80px;
+}
+
+#contacts-list li img {
+    height: 80px;
+    width: 80px;
 }
 
 /************************************************/
@@ -531,8 +559,9 @@ nav ul li.no-hover:hover {
 }
 
 ul.side-nav.leftside-navigation {
-    top: 64px;
-    overflow: hidden
+    top: 70px;
+    padding: 5px;
+    overflow: hidden;
 }
 
 ul.side-nav.leftside-navigation hr {
@@ -596,7 +625,8 @@ ul.side-nav .collapsible-header {
 }
 
 div.side-nav.leftside-navigation {
-    top: 64px;
+    top: 70px;
+    padding: 5px;
     overflow: hidden
 }
 

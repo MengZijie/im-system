@@ -2,14 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>登录</title>
+    <title>注册</title>
     <link rel="stylesheet" href="/css/materialize.min.css">
     <link rel="stylesheet" href="/css/style.min.css">
     <script src="/js/jquery-3.1.1.min.js"></script>
     <script src="/js/perfect-scrollbar.min.js"></script>
     <script src="/js/materialize.min.js"></script>
-    <script src="/js/common.js"></script>
-    <script src="/js/login.js"></script>
+    <script src="/js/register.js"></script>
 </head>
 <body>
 <header class="page-top">
@@ -20,27 +19,44 @@
                 <li>天才小熊猫</li>
                 <li>天才小熊猫</li>
             </ul>
+
             <ul class="right">
                 <li><a href="#">Navbar Link</a></li>
             </ul>
+
         </div>
     </nav>
 </header>
 <div id="main">
     <div class="row">
-        <form id="login-form" class="col s12" style="padding-top: 30px;">
+        <form id="register-form" class="col s12" style="padding-top: 30px;">
             <div id="username-input-area" class="input-field col s9">
                 <div class="input-error-msg"></div>
                 <input id="username-input" type="text" name="username">
                 <label for="username-input">用户名</label>
+            </div>
+            <div id="nickname-input-area" class="input-field col s9">
+                <div class="input-error-msg"></div>
+                <input id="nickname-input" type="text" name="nickname">
+                <label for="nickname-input">昵称</label>
+            </div>
+            <div id="email-input-area" class="input-field col s9">
+                <div class="input-error-msg"></div>
+                <input id="email-input" type="text" name="email">
+                <label for="email-input">电子邮箱</label>
             </div>
             <div id="password-input-area" class="input-field col s9">
                 <div class="input-error-msg"></div>
                 <input id="password-input" type="password" name="password">
                 <label for="password-input">密码</label>
             </div>
+            <div id="re-password-input-area" class="input-field col s9">
+                <div class="input-error-msg"></div>
+                <input id="re-password-input" type="password" class="">
+                <label for="re-password-input">确认密码</label>
+            </div>
             <div class="col s9">
-                <button class="btn light-blue lighten-1" type="button">提交
+                <button class="btn light-blue lighten-1" type="button" style="background-color: ">提交
                     <i class="material-icons right">send</i>
                 </button>
             </div>

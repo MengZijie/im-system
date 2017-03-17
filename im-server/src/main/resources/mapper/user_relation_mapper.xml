@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mzj.im.dao.UserRelationDAO">
+    <select id="selectUserId2ByUserId1" resultType="java.lang.Long" parameterType="java.lang.Long">
+        SELECT user_id_2 FROM t_user_relation WHERE t_user_1 = #{userId};
+    </select>
+
+    <select id="selectUserId1ByUserId2" resultType="java.lang.Long" parameterType="java.lang.Long">
+        SELECT user_id_1 FROM t_user_relation WHERE t_user_2 = #{userId};
+    </select>
+
+    <insert id="insertUserRelation" parameterType="java.lang.Long">
+        insert into t_user_relation (user_id_1, user_id_2) values (#{userId1}, #{userId2});
+    </insert>
+</mapper>

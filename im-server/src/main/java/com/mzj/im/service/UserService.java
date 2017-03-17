@@ -7,6 +7,8 @@ import com.mzj.im.util.dic.OperateResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by OB on 2017/2/3.
  */
@@ -20,6 +22,10 @@ public class UserService {
         return new UserVO(userBiz.getUserByUsername(username));
     }
 
+    public List<UserPO> getUserListByInfo(UserPO user) {
+        return userBiz.getUserList(user);
+    }
+
     public OperateResult addOneUser(UserPO user) {
         return userBiz.addOneUser(user);
     }
@@ -27,4 +33,5 @@ public class UserService {
     public OperateResult updateOneUser(UserPO user) {
         return userBiz.updateOneUserByUsername(user);
     }
+
 }

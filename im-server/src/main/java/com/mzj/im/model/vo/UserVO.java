@@ -9,7 +9,7 @@ import org.apache.commons.lang.StringUtils;
  */
 public class UserVO extends UserPO {
 
-    private Boolean isEmpty;
+    private boolean isEmpty;
 
     public UserVO() {
         super();
@@ -33,11 +33,11 @@ public class UserVO extends UserPO {
         }
     }
 
-    public Boolean isLock() {
+    public boolean isLock() {
         return "Y".equals(StringUtils.upperCase(String.valueOf(getIsDelete())));
     }
 
-    public Boolean isEmpty() {
+    public boolean isEmpty() {
         return isEmpty;
     }
 

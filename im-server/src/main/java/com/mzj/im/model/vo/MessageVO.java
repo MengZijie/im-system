@@ -1,7 +1,7 @@
 package com.mzj.im.model.vo;
 
-import com.alibaba.fastjson.JSONObject;
 import com.mzj.im.model.po.MessagePO;
+import net.sf.json.JSONObject;
 
 /**
  * Created by OB on 2017/2/9.

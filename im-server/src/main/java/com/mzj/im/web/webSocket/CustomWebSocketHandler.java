@@ -1,10 +1,10 @@
 package com.mzj.im.web.webSocket;
 
-import com.alibaba.fastjson.JSONObject;
 import com.mzj.im.model.vo.MessageVO;
 import com.mzj.im.model.vo.UserVO;
 import com.mzj.im.service.MessageService;
 import com.mzj.im.util.ObjectUtil;
+import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.*;
@@ -55,12 +55,13 @@ public class CustomWebSocketHandler implements WebSocketHandler {
     @Override
     public void handleMessage(WebSocketSession session, WebSocketMessage<?> message) throws Exception {
         if (message.getPayloadLength() != 0) {
-            MessageVO msg = JSONObject.toJavaObject(JSONObject.parseObject(message.getPayload().toString()), MessageVO.class);
+//            MessageVO msg = JSONObject.toJavaObject(JSONObject.parseObject(message.getPayload().toString()), MessageVO.class);
+            MessageVO msg = (MessageVO) JSONObject.toBean(JSONObject.fromObject(message.getPayload().toString()));
             Timestamp time = new Timestamp(System.currentTimeMillis());
             msg.setSendTime(time);
             // TODO: 2017/2/9 优化：message先缓存到redis中，然后持久化 
             messageService.addOneMessage(msg);
-            sendMessageToUser(msg.getOriginUserId(), new TextMessage(msg.toJSON().toJSONString()));
+            sendMessageToUser(msg.getOriginUserId(), new TextMessage(msg.toJSON().toString()));
         }
     }
 
