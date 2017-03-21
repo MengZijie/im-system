@@ -6,7 +6,6 @@ import com.mzj.im.model.po.UserPO;
 import com.mzj.im.model.vo.UserVO;
 import com.mzj.im.util.dic.OperateResult;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
