@@ -8,17 +8,22 @@ import org.springframework.stereotype.Component;
 /**
  * Created by ob on 17-3-17.
  */
+@Component
 public class RedisBaseDAO <K, V> {
 
     @Autowired(required = true)
     protected RedisTemplate<K, V> redisTemplate;
+
+    public RedisTemplate<K, V> getRedisTemplate() {
+        return redisTemplate;
+    }
 
     public void setRedisTemplate(RedisTemplate<K, V> redisTemplate) {
         this.redisTemplate = redisTemplate;
     }
 
     protected RedisSerializer<K> getKeySerializer(){
-        return (RedisSerializer<K>) redisTemplate.getKeySerializer();
+        return (RedisSerializer<K>) getRedisTemplate().getKeySerializer();
     }
 
     protected RedisSerializer<V> getValueSerializer(){

@@ -17,16 +17,13 @@ import java.util.Collection;
 @Component
 public class RedisUserDAO extends RedisBaseDAO<Long, UserVO> {
 
-    private RedisSerializer<Long> keySerializer = getKeySerializer();
-    private RedisSerializer<UserVO> valueSerializer = getValueSerializer();
-
     public UserVO get(final Long userId) {
         UserVO result = redisTemplate.execute(new RedisCallback<UserVO>() {
             @Override
             public UserVO doInRedis(RedisConnection connection) throws DataAccessException {
-                byte[] key = keySerializer.serialize(userId);
+                byte[] key = getKeySerializer().serialize(userId);
                 byte[] value = connection.get(key);
-                return value == null ? null : valueSerializer.deserialize(value);
+                return value == null ? null : getValueSerializer().deserialize(value);
             }
         });
         return result;
@@ -36,8 +33,8 @@ public class RedisUserDAO extends RedisBaseDAO<Long, UserVO> {
         boolean result = redisTemplate.execute(new RedisCallback<Boolean>() {
             @Override
             public Boolean doInRedis(RedisConnection connection) throws DataAccessException {
-                byte[] key = keySerializer.serialize(user.getId());
-                byte[] value = valueSerializer.serialize(user);
+                byte[] key = getKeySerializer().serialize(user.getId());
+                byte[] value = getValueSerializer().serialize(user);
                 return connection.setNX(key, value);
             }
         });
@@ -51,8 +48,8 @@ public class RedisUserDAO extends RedisBaseDAO<Long, UserVO> {
             @Override
             public Boolean doInRedis(RedisConnection connection) throws DataAccessException {
                 for (UserVO user : userCollection) {
-                    byte[] key = keySerializer.serialize(user.getId());
-                    byte[] value = valueSerializer.serialize(user);
+                    byte[] key = getKeySerializer().serialize(user.getId());
+                    byte[] value = getValueSerializer().serialize(user);
                     return connection.setNX(key, value);
                 }
                 return true;

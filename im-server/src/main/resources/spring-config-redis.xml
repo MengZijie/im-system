@@ -5,8 +5,6 @@
        xsi:schemaLocation="
            http://www.springframework.org/schema/beans
            http://www.springframework.org/schema/beans/spring-beans.xsd">
-
-
     <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
         <property name="maxTotal" value="${jedis.maxTotal}"/>
         <property name="maxIdle" value="${jedis.maxIdle}"/>
@@ -20,7 +18,8 @@
         <property name="testWhileIdle" value="${jedis.testWhileIdle}"/>
     </bean>
 
-    <bean id="connectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory" destroy-method="destroy">
+    <bean id="connectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
+          destroy-method="destroy">
         <property name="hostName" value="${redis.hostname}"/>
         <property name="port" value="${redis.port}"/>
         <property name="timeout" value="${redis.timeout}"/>
@@ -30,7 +29,8 @@
         <property name="poolConfig" ref="jedisPoolConfig"/>
     </bean>
 
-    <bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate" p:connection-factory-ref="connectionFactory"/>
-    <bean id="stringRedisTemplate" class="org.springframework.data.redis.core.StringRedisTemplate" p:connection-factory-ref="connectionFactory"/>
-
+    <bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate"
+          p:connection-factory-ref="connectionFactory"/>
+    <bean id="stringRedisTemplate" class="org.springframework.data.redis.core.StringRedisTemplate"
+          p:connection-factory-ref="connectionFactory"/>
 </beans>
