@@ -27,6 +27,7 @@ public class UserPO implements Serializable {
         this.id = id;
     }
 
+
     public String getUsername() {
         return username;
     }
@@ -104,6 +105,6 @@ public class UserPO implements Serializable {
     }
 
     public void setIsDelete(Character isDelete) {
-        this.isDelete = isDelete;
+        this.isDelete = Character.toUpperCase(isDelete == null ? 'N' : isDelete);
     }
 }

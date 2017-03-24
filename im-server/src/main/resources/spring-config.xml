@@ -18,8 +18,10 @@
     <context:property-placeholder location="classpath:config.properties"/>
 
     <bean class="com.mzj.im.util.SpringUtils"/>
+
     <import resource="classpath:spring-config-mybatis.xml"/>
     <import resource="classpath:spring-config-redis.xml"/>
+    <import resource="classpath:spring-config-session.xml"/>
 
     <context:component-scan base-package="com.mzj.im"/>
 </beans>

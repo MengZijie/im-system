@@ -26,7 +26,6 @@ public class UserService {
         UserVO user = getUserByUsername(username);
         if(!user.isEmpty() && password.equals(user.getPassword())){
             user.setOnline(true);
-            redisUserDAO.put(user);
             return user;
         }
         return null;

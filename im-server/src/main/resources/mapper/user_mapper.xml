@@ -15,17 +15,17 @@
         <result column="is_delete" property="isDelete"/>
     </resultMap>
     <sql id="all_column">
-        id AS id,
-        username AS  username,
-        nick_name AS nickName,
-        password AS password,
-        salt AS salt,
-        photo AS photo,
-        sign AS sign,
-        email AS email,
-        create_time AS createTime,
-        update_time AS updateTime,
-        is_delete AS isDelete
+        id            AS id,
+        username      AS username,
+        nick_name     AS nickName,
+        password      AS password,
+        salt          AS salt,
+        photo         AS photo,
+        sign          AS sign,
+        email         AS email,
+        create_time   AS createTime,
+        update_time   AS updateTime,
+        is_delete     AS isDelete
     </sql>
 
     <sql id="safe_column">

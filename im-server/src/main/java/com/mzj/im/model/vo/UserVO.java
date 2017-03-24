@@ -2,17 +2,26 @@ package com.mzj.im.model.vo;
 
 import com.mzj.im.model.po.UserPO;
 import com.mzj.im.util.ObjectUtil;
+import net.sf.json.JSONObject;
 import org.apache.commons.lang.StringUtils;
+
+import java.io.Serializable;
 
 /**
  * Created by OB on 2017/2/3.
  */
-public class UserVO extends UserPO {
+public class UserVO extends UserPO implements Serializable {
 
-    private boolean isEmpty;
+    private boolean empty;
+
+    public boolean online;
+
+    public boolean lock;
 
     public UserVO() {
         super();
+        empty = false;
+        online = false;
     }
 
     public UserVO(UserPO userPO) {
@@ -29,34 +38,37 @@ public class UserVO extends UserPO {
             setUpdateTime(userPO.getUpdateTime());
             setIsDelete(userPO.getIsDelete());
         } else {
-            isEmpty = true;
+            empty = true;
         }
     }
 
-    public boolean isOnline = false;
-
-    public boolean isLock() {
-        return "Y".equals(StringUtils.upperCase(String.valueOf(getIsDelete())));
-    }
-
-    public boolean isEmpty() {
-        return isEmpty;
-    }
-
     public boolean isOnline() {
-        return isOnline;
-    }
-
-    public boolean getIsOnline() {
-        return isOnline;
+        return online;
     }
 
     public void setOnline(boolean online) {
-        isOnline = online;
+        online = online;
+    }
+
+    public boolean isLock() {
+        return lock;
+    }
+
+    public void setLock(boolean lock) {
+        this.lock = lock;
+        setIsDelete('Y');
+    }
+
+    public boolean isEmpty() {
+        return empty;
     }
 
     public void setNotEmpty() {
-        isEmpty = false;
+        empty = false;
+    }
+
+    public void setEmpty(boolean empty) {
+        this.empty = empty;
     }
 
     public UserVO publishUserVO() {
@@ -66,5 +78,12 @@ public class UserVO extends UserPO {
         setPassword(null);
         setSalt(null);
         return this;
+    }
+
+    public JSONObject toJSON() {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("id", getId());
+        jsonObject.put("username", getUsername());
+        return jsonObject;
     }
 }
