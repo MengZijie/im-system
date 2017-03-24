@@ -1,5 +1,6 @@
 package com.mzj.im.model.po;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 /**
@@ -25,6 +26,7 @@ public class UserPO {
     public void setId(long id) {
         this.id = id;
     }
+
 
     public String getUsername() {
         return username;
@@ -103,6 +105,6 @@ public class UserPO {
     }
 
     public void setIsDelete(Character isDelete) {
-        this.isDelete = isDelete;
+        this.isDelete = Character.toUpperCase(isDelete == null ? 'N' : isDelete);
     }
 }

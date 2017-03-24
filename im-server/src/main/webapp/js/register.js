@@ -112,23 +112,4 @@ $(document).ready(function () {
         }
     })
 
-    $("#register-form button").click(function () {
-        if (usernameFlag && passwordFlag) {
-            var user = {
-                username: $("#username-input").val(),
-                password: $("#password-input").val()
-            };
-            $.ajax({
-                url: '/user/login',
-                type: 'post',
-                data: user,
-                success: function (data) {
-                    window.location.href = data;
-                }
-            })
-        } else {
-            alert("请认真填写表单");
-        }
-    })
-
 })

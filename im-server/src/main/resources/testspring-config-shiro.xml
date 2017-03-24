@@ -7,7 +7,7 @@
 			http://www.springframework.org/schema/util
 			http://www.springframework.org/schema/util/spring-util.xsd">
 
-    <import resource="classpath:spring-cache.xml"/>
+    <import resource="classpath:spring-config-cache.xml"/>
 
     <!-- 缓存管理器 -->
     <bean id="cacheManager" class="com.mzj.im.util.SpringCacheManagerWrapper">

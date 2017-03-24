@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mzj.im.dao.MsgDAO">
+    <sql id="all_column">
+        id            AS id,
+        post_user_id  AS postUserId,
+        get_user_id   AS getUserId,
+        msg_mode      AS msgMode,
+        msg_type      AS msgType,
+        msg_desc      AS msgDesc,
+        is_online     AS isOnline,
+        has_read      AS hasRead,
+        create_time   AS createTime,
+        is_delete     AS isDelete
+    </sql>
+    <sql id="default_write_column">
+        post_user_id  AS postUserId,
+        get_user_id   AS getUserId,
+        msg_mode      AS msgMode,
+        msg_type      AS msgType,
+        msg_desc      AS msgDesc,
+        is_online     AS isOnline,
+        has_read      AS hasRead,
+        is_delete     AS isDelete
+    </sql>
+    <select id="selectPostMsgByUserId" parameterType="java.lang.Long" resultType="com.mzj.im.model.po.MsgPO">
+        SELECT
+        <include refid="all_column"/>
+        FROM t_msg WHERE post_user_id = #{postUserId}
+    </select>
+    <select id="selectGetMsgByUserId" parameterType="java.lang.Long" resultType="com.mzj.im.model.po.MsgPO">
+        SELECT
+        <include refid="all_column"/>
+        FROM t_msg WHERE get_user_id = #{getUserId}
+    </select>
+
+    <insert id="insertMsgSet" parameterType="com.mzj.im.model.po.MessagePO">
+        insert into t_msg (
+        <include refid="default_write_column"/>
+        ) VALUES
+        <foreach collection="set" separator=",">
+            (
+                #{postUserId},
+                #{getUserId},
+                #{msgMode},
+                #{msgType},
+                #{msgDesc},
+                #{isOnline},
+                #{hasRead},
+                #{isDelete}
+            )
+        </foreach>
+    </insert>
+</mapper>

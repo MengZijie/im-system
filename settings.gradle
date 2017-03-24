@@ -1,0 +1,4 @@
+rootProject.name = 'im'
+include 'im-util'
+include 'im-server'
+

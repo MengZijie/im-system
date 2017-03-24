@@ -1,60 +1,58 @@
-group 'com.mzj'
-version '1.0.0'
-
-apply plugin: 'java'
 apply plugin: 'war'
-sourceCompatibility = 1.8
-
-compileJava.options.encoding = 'UTF-8'
 
 repositories {
-    maven { url 'http://maven.aliyun.com/nexus/content/repositories/central/' }
+    mavenCentral()
 }
 
 dependencies {
-    compile 'org.aspectj:aspectjrt:1.7.4'
-    compile 'commons-beanutils:commons-beanutils-core:1.8.3'
-    compile 'commons-codec:commons-codec:1.9'
-    compile 'commons-configuration:commons-configuration:1.6'
-    compile 'commons-collections:commons-collections:3.2.1'
-    compile 'commons-fileupload:commons-fileupload:1.2.1'
-    compile 'commons-io:commons-io:1.3.2'
-    compile 'commons-lang:commons-lang:2.6'
-    compile 'commons-logging:commons-logging-api:1.1'
-    compile 'com.alibaba:druid:1.0.9'
-    compile 'javax.servlet:javax.servlet-api:3.1.0'
-    compile 'javax.servlet:jstl:1.2'
-    compile 'junit:junit:4.11'
-    compile 'mysql:mysql-connector-java:5.1.33'
-    compile 'net.sf.ezmorph:ezmorph:1.0.6'
-    compile 'net.sf.json-lib:json-lib:2.4:jdk15'
-    compile 'org.apache.logging.log4j:log4j-api:2.1'
-    compile 'org.apache.logging.log4j:log4j-core:2.1'
-    compile 'org.apache.shiro:shiro-core:1.3.2'
-    compile 'org.apache.shiro:shiro-ehcache:1.2.2'
-    compile 'org.apache.shiro:shiro-web:1.3.2'
-    compile 'org.apache.shiro:shiro-quartz:1.3.2'
-    compile 'org.apache.shiro:shiro-spring:1.3.2'
-    compile 'org.aspectj:aspectjrt:1.7.4'
-    compile 'org.aspectj:aspectjweaver:1.7.4'
-    compile 'org.codehaus.jackson:jackson-mapper-asl:1.8.5'
-    compile 'org.json:json:20140107'
-    compile 'org.mybatis:mybatis:3.4.2'
-    compile 'org.mybatis:mybatis-spring:1.3.1'
-    compile 'org.quartz-scheduler:quartz:1.8.5'
-    compile 'org.springframework:spring-aop:1.2.6'
-    compile 'org.springframework:spring-context:4.3.5.RELEASE'
-    compile 'org.springframework:spring-context-support:4.3.5.RELEASE'
-    compile 'org.springframework:spring-core:4.3.5.RELEASE'
-    compile 'org.springframework:spring-jdbc:4.3.5.RELEASE'
-    compile 'org.springframework:spring-messaging:4.3.5.RELEASE'
-    compile 'org.springframework:spring-web:4.3.5.RELEASE'
-    compile 'org.springframework:spring-webmvc:4.3.5.RELEASE'
-    compile 'org.springframework:spring-websocket:4.3.5.RELEASE'
-    compile 'org.springframework.data:spring-data-redis:1.7.6.RELEASE'
-    compile 'redis.clients:jedis:2.9.0'
 
-    testCompile 'org.springframework:spring-test:4.3.5.RELEASE'
+    compile project("im-util")
+
+    // db
+    compile(
+            'com.alibaba:druid:1.0.9',
+            'mysql:mysql-connector-java:5.1.33',
+            'org.mybatis:mybatis:3.4.2',
+            'org.mybatis:mybatis-spring:1.3.1'
+    )
+
+    // json
+    compile(
+            'net.sf.ezmorph:ezmorph:1.0.6',
+            'net.sf.json-lib:json-lib:2.4:jdk15',
+            'com.fasterxml.jackson.core:jackson-annotations:2.9.0.pr1',
+            'com.fasterxml.jackson.core:jackson-databind:2.9.0.pr1',
+            'com.fasterxml.jackson.core:jackson-core:2.9.0.pr1',
+            'org.codehaus.jackson:jackson-mapper-asl:1.8.5',
+            'org.json:json:20140107'
+    )
+
+    // shiro
+    compile(
+            'org.apache.shiro:shiro-core:1.3.2',
+            'org.apache.shiro:shiro-ehcache:1.2.2',
+            'org.apache.shiro:shiro-web:1.3.2',
+            'org.apache.shiro:shiro-quartz:1.3.2',
+            'org.apache.shiro:shiro-spring:1.3.2'
+    )
+
+    // springframework
+    compile(
+            'org.springframework:spring-jdbc:4.3.5.RELEASE',
+            'org.springframework:spring-messaging:4.3.5.RELEASE',
+            'org.springframework:spring-web:4.3.5.RELEASE',
+            'org.springframework:spring-webmvc:4.3.5.RELEASE',
+            'org.springframework:spring-websocket:4.3.5.RELEASE',
+            'org.springframework.data:spring-data-redis:1.7.6.RELEASE',
+            'org.springframework.session:spring-session:1.3.0.RELEASE'
+    )
+
+    // other
+    compile(
+            'javax.servlet:javax.servlet-api:3.1.0',
+            'javax.servlet:jstl:1.2',
+            'junit:junit:4.12',
+            'org.quartz-scheduler:quartz:1.8.5'
+    )
+
 }
-
-
