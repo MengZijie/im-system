@@ -35,13 +35,13 @@ public class UserController {
 
     @RequestMapping(value = "login", method = RequestMethod.POST)
     @ResponseBody
-    public String doLogin(HttpSession Session,
+    public String doLogin(HttpSession session,
                           @RequestParam("username") String username,
                           @RequestParam("password") String password) {
         UserVO user = userService.doLogin(username,password);
         if (ObjectUtil.isNotNull(user)) {
-            Session.setAttribute("user", user);
-            String uri = (String) Session.getAttribute("requestUri");
+            session.setAttribute("user", user);
+            String uri = (String) session.getAttribute("requestUri");
             if (StringUtils.isEmpty(uri)) {
                 uri = "/home";
             }

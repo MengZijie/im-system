@@ -42,8 +42,7 @@ public class CustomWebSocketHandler implements WebSocketHandler {
      */
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-        UserVO user = (UserVO) session.getAttributes().get("user");
-        long id = user.getId();
+        long id =(Long) session.getAttributes().get("userId");
         if (ObjectUtil.isNull(userWebSocketSessionMap.get(id))) {
             userWebSocketSessionMap.put(id, session);
         }
@@ -59,6 +58,7 @@ public class CustomWebSocketHandler implements WebSocketHandler {
     @Override
     public void handleMessage(WebSocketSession session, WebSocketMessage<?> message) throws Exception {
         if (message.getPayloadLength() != 0) {
+
 //            MessageVO msg = JSONObject.toJavaObject(JSONObject.parseObject(message.getPayload().toString()), MessageVO.class);
             MessageVO msg = (MessageVO) JSONObject.toBean(JSONObject.fromObject(message.getPayload().toString()));
             Timestamp time = new Timestamp(System.currentTimeMillis());

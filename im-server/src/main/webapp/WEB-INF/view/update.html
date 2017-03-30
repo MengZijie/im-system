@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>更新</title>
+    <link rel="stylesheet" href="/css/materialize.min.css">
+    <link rel="stylesheet" href="/css/style.min.css">
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/cropper.css">
+    <link rel="stylesheet" href="../../css/docs.css">
+    <script src="/js/common.js"></script>
+    <script src="/js/register.js"></script>
+    <script src="../../js/util/bootstrap.min.js"></script>
+    <script src="../../js/util/cropper.js"></script>
+    <script src="../../js/util/docs.js"></script>
+    <script src="../../js/util/jquery-3.1.1.min.js"></script>
+    <script src="../../js/util/materialize.min.js"></script>
+    <script src="../../js/util/perfect-scrollbar.min.js"></script>
+</head>
+<body>
+<header class="page-top">
+    <nav class="light-blue lighten-1" role="navigation">
+        <div class="nav-wrapper row z-depth-3">
+            <div class="col s1"><img class="head-img" src="/img/消息.png"/></div>
+            <ul class="col s3">
+                <li>天才小熊猫</li>
+                <li>天才小熊猫</li>
+            </ul>
+
+            <ul class="right">
+                <li><a href="#">Navbar Link</a></li>
+            </ul>
+
+        </div>
+    </nav>
+</header>
+<div id="main">
+    <div class="row">
+        <form id="register-form" class="col s12" style="padding-top: 30px;">
+            <div id="username-input-area" class="input-field col s9">
+                <div class="input-error-msg"></div>
+                <input id="username-input" type="text" name="username">
+                <label for="username-input">用户名</label>
+            </div>
+            <div id="nickname-input-area" class="input-field col s9">
+                <div class="input-error-msg"></div>
+                <input id="nickname-input" type="text" name="nickname">
+                <label for="nickname-input">昵称</label>
+            </div>
+            <div id="email-input-area" class="input-field col s9">
+                <div class="input-error-msg"></div>
+                <input id="email-input" type="text" name="email">
+                <label for="email-input">电子邮箱</label>
+            </div>
+            <div id="password-input-area" class="input-field col s9">
+                <div class="input-error-msg"></div>
+                <input id="password-input" type="password" name="password">
+                <label for="password-input">密码</label>
+            </div>
+            <div id="re-password-input-area" class="input-field col s9">
+                <div class="input-error-msg"></div>
+                <input id="re-password-input" type="password" class="">
+                <label for="re-password-input">确认密码</label>
+            </div>
+            <div id="photo-editor-area" class="col s9">
+                <div id="photo-editor" class="row">
+                    <div class="container-fluid eg-container" id="basic-example">
+                        <div class="row eg-main">
+                            <div class="col-xs-12 col-sm-9">
+                                <div class="eg-wrapper">
+                                    <img class="cropper" src="demos/img/picture-1.jpg" alt="Picture">
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-3">
+                                <div class="eg-preview clearfix">
+                                    <div class="preview preview-lg"></div>
+                                    <div class="preview preview-md"></div>
+                                    <div class="preview preview-sm"></div>
+                                    <div class="preview preview-xs"></div>
+                                </div>
+                                <div class="eg-data">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">X</span>
+                                        <input class="form-control" id="dataX" type="text" placeholder="x">
+                                        <span class="input-group-addon">px</span>
+                                    </div>
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Y</span>
+                                        <input class="form-control" id="dataY" type="text" placeholder="y">
+                                        <span class="input-group-addon">px</span>
+                                    </div>
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Width</span>
+                                        <input class="form-control" id="dataWidth" type="text" placeholder="width"><span class="input-group-addon">px</span>
+                                    </div>
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Height</span>
+                                        <input class="form-control" id="dataHeight" type="text" placeholder="height">
+                                        <span class="input-group-addon">px</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix">
+                            <div class="eg-button">
+                                <button class="btn btn-warning" id="reset" type="button">Reset</button>
+                                <button class="btn  btn-warning" id="reset2" type="button">Reset (deep)</button>
+                                <button class="btn btn-primary" id="clear" type="button">Clear</button>
+                                <button class="btn btn-danger" id="destroy" type="button">Destroy</button>
+                                <button class="btn btn-success" id="enable" type="button">Enable</button>
+                                <button class="btn btn-warning" id="disable" type="button">Disable</button>
+                                <button class="btn btn-info" id="zoomIn" type="button">Zoom In</button>
+                                <button class="btn btn-info" id="zoomOut" type="button">Zoom Out</button>
+                                <button class="btn btn-info" id="rotateLeft" type="button">Rotate Left</button>
+                                <button class="btn btn-info" id="rotateRight" type="button">Rotate Right</button>
+                                <button class="btn btn-primary" id="setData" type="button">Set Data</button>
+                            </div>
+                            <div class="row eg-input">
+                                <div class="col-md-6">
+                                    <div class="input-group">
+                                        <span class="input-group-btn">
+                                          <button class="btn btn-info" id="getData" type="button">Get Data</button>
+                                        </span>
+                                        <input class="form-control" id="showData" type="text">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-info" id="getData2" type="button">Get Data (Rounded)</button>
+                                        </span>
+                                    </div>
+                                    <div class="input-group">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-info" id="getImageData" type="button">Get Image Data</button>
+                                        </span>
+                                        <input class="form-control" id="showImageData" type="text">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="input-group">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-primary" id="replace" type="button">Replace</button>、
+                                        </span>
+                                        <input class="form-control" id="replaceWith" type="text" value="demos/img/picture-2.jpg">
+                                    </div>
+                                    <div class="input-group">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-primary" id="setAspectRatio" type="button">Set Aspect Ratio</button>
+                                        </span>
+                                        <input class="form-control" id="aspectRatio" type="text" value="auto">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="input-group">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-primary" id="zoom" type="button">Zoom</button>
+                                        </span>
+                                        <input class="form-control" id="zoomWith" type="number" value="0.5">
+                                    </div>
+                                    <div class="input-group">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-primary" id="rotate" type="button">Rotate</button>
+                                        </span>
+                                        <input class="form-control" id="rotateWith" type="number" value="45">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row eg-output">
+                                <div class="col-md-12">
+                                    <button class="btn btn-primary" id="getDataURL" type="button">Get Data URL</button>
+                                    <button class="btn btn-primary" id="getDataURL2" type="button">Get Data URL (JPG)</button>
+                                    <button class="btn btn-primary" id="getDataURL3" type="button">Get Data URL (160*90)</button>
+                                </div>
+                                <div class="col-md-6">
+                                    <textarea class="form-control" id="dataURL" rows="10"></textarea>
+                                </div>
+                                <div class="col-md-6">
+                                    <div id="showDataURL"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col s9">
+                <button class="btn light-blue lighten-1" type="button">提交
+                    <i class="material-icons right">send</i>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+
+</html>

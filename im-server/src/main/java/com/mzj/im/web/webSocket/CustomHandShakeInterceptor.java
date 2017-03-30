@@ -16,7 +16,7 @@ import java.util.Map;
 /**
  * Created by OB on 2017/2/9.
  */
-public class CustomHandShakeIntercepter implements HandshakeInterceptor {
+public class CustomHandShakeInterceptor implements HandshakeInterceptor {
 
     @Override
     public boolean beforeHandshake(ServerHttpRequest request, ServerHttpResponse response, WebSocketHandler wsHandler, Map<String, Object> attributes) throws Exception {
@@ -25,7 +25,9 @@ public class CustomHandShakeIntercepter implements HandshakeInterceptor {
             UserVO user = (UserVO) session.getAttribute("user");
             if (ObjectUtil.isNotNull(user)) {
                 ConnectionUtil.addUser(user);
-                System.out.println("WebSocket [用户: " + user.getUsername() + "已连接");
+                attributes.put("userId", user.getId());
+                System.out.println("WebSocket [用户: " + user.getUsername() +"]" + "已连接");
+                return true;
             }
         }
         return false;

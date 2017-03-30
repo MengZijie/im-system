@@ -17,7 +17,7 @@
     <aop:aspectj-autoproxy proxy-target-class="true"/>
 
     <!-- 自动扫描web包下的所有类，包含spring mvc的控制器、控制器增强及aop控制 -->
-    <context:component-scan base-package="com.mzj.im.web.controller"/>
+    <context:component-scan base-package="com.mzj.im.web"/>
 
     <!-- 启动Spring MVC的注解功能，完成请求和注解POJO的映射 -->
     <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"/>
