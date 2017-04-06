@@ -18,6 +18,13 @@
     <context:property-placeholder location="classpath:config.properties"/>
 
     <bean class="com.mzj.im.util.SpringUtils"/>
+    <bean id="projectConfig" class="com.mzj.im.util.dic.ProjectConfig">
+        <property name="configs">
+            <props>
+                <prop key="fileUploadPath">${fileUploadPath}</prop>
+            </props>
+        </property>
+    </bean>
 
     <import resource="classpath:spring-config-mybatis.xml"/>
     <import resource="classpath:spring-config-redis.xml"/>
