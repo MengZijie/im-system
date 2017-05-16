@@ -28,7 +28,7 @@ public class UserVO extends UserPO implements Serializable {
         if (ObjectUtil.isNotNull(userPO)) {
             setId(userPO.getId());
             setUsername(userPO.getUsername());
-            setNickName(userPO.getNickName());
+            setNickname(userPO.getNickname());
             setPassword(userPO.getPassword());
             setSalt(userPO.getSalt());
             setPhoto(userPO.getPhoto());

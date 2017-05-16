@@ -1,15 +1,68 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.mzj.im.dao.UserRelationDAO">
-    <select id="selectUserId2ByUserId1" resultType="java.lang.Long" parameterType="java.lang.Long">
-        SELECT user_id_2 FROM t_user_relation WHERE t_user_1 = #{userId};
+
+    <resultMap id="userRelationMap" type="com.mzj.im.model.po.UserRelationPo">
+        <id     column="id"                 property="id" />
+        <result column="primaryUserId"      property="primaryUserId" />
+        <result column="relatedUserId"      property="relatedUserId" />
+        <result column="userCategoryId"     property="userCategoryId" />
+        <association property="friend" javaType="com.mzj.im.model.po.UserPO">
+            <id     column="userId"         property="id"/>
+            <result column="username"       property="username"/>
+            <result column="nickname"       property="nickname"/>
+            <result column="password"       property="password"/>
+            <result column="salt"           property="salt"/>
+            <result column="photo"          property="photo"/>
+            <result column="sign"           property="sign"/>
+            <result column="email"          property="email"/>
+            <result column="createTime"     property="createTime"/>
+            <result column="updateTime"     property="updateTime"/>
+            <result column="isDelete"       property="isDelete"/>
+        </association>
+    </resultMap>
+
+    <sql id="allColumn">
+        id                AS id,
+        primary_user_id   AS primaryUserId,
+        related_user_id   AS relatedUserId,
+        user_category_id  AS userCategoryId
+    </sql>
+
+    <select id="selectFriendList" resultMap="userRelationMap">
+        SELECT
+          ur.id                   AS id,
+          ur.related_user_id      AS relatedUserId,
+          ur.primary_user_id      AS primaryUserId,
+          ur.user_category_id     AS userCategoryId,
+          u.id            AS userId,
+          u.username      AS username,
+          u.nickname      AS nickname,
+          u.password      AS password,
+          u.salt          AS salt,
+          u.photo         AS photo,
+          u.sign          AS sign,
+          u.email         AS email,
+          u.create_time   AS createTime,
+          u.update_time   AS updateTime,
+          u.is_delete     AS isDelete
+        FROM t_user_relation ur LEFT JOIN t_user u
+            ON ur.related_user_id = u.id
+        WHERE ur.primary_user_id = #{userId}
     </select>
 
-    <select id="selectUserId1ByUserId2" resultType="java.lang.Long" parameterType="java.lang.Long">
-        SELECT user_id_1 FROM t_user_relation WHERE t_user_2 = #{userId};
+    <select id="selectFriendIdByUserId" parameterType="java.lang.Long" resultType="com.mzj.im.model.po.MsgPO">
+        SELECT <include refid="allColumn" />
+        FROM t_user_relation
+        WHERE primary_user_id = #{userId} AND is_delete ='N'
     </select>
 
-    <insert id="insertUserRelation" parameterType="java.lang.Long">
-        insert into t_user_relation (user_id_1, user_id_2) values (#{userId1}, #{userId2});
+    <insert id="insertUserRelation" parameterType="com.mzj.im.model.po.MsgPO">
+        INSERT INTO t_user_relation (primary_user_id, related_user_id, user_category_id)
+        VALUES (#{primaryUserId}, #{relatedUserId}, #{userCategoryId});
     </insert>
+
+    <update id="deleteOneRelation" parameterType="java.lang.Long">
+        UPDATE t_user_relation SET is_delete = 'Y' WHERE related_user_id = #{relatedUserId} AND user_category_id = #{userCategoryId}
+    </update>
 </mapper>

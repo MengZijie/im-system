@@ -4,7 +4,7 @@
     <resultMap id="userMap" type="com.mzj.im.model.po.UserPO">
         <id column="id" property="id"/>
         <result column="username" property="username"/>
-        <result column="nick_name" property="nickName"/>
+        <result column="nickname" property="nickname"/>
         <result column="password" property="password"/>
         <result column="salt" property="salt"/>
         <result column="photo" property="photo"/>
@@ -17,7 +17,7 @@
     <sql id="all_column">
         id            AS id,
         username      AS username,
-        nick_name     AS nickName,
+        nickname      AS nickname,
         password      AS password,
         salt          AS salt,
         photo         AS photo,
@@ -29,7 +29,7 @@
     </sql>
 
     <sql id="safe_column">
-        id, username, nick_name, photo, sign, email, create_time, update_time
+        id, username, nickname, photo, sign, email, create_time, update_time
     </sql>
 
     <!-- 查询用户map -->
@@ -50,8 +50,8 @@
         <if test="email != null">
             AND email = #{email}
         </if>
-        <if test="nickName != null">
-            AND nick_name = #{nickName}
+        <if test="nickname != null">
+            AND nickname = #{nickname}
         </if>
     </select>
 
@@ -72,8 +72,8 @@
         <if test="email != null">
             AND email = #{email}
         </if>
-        <if test="nickName != null">
-            AND nick_name = #{nickName}
+        <if test="nickname != null">
+            AND nickname = #{nickname}
         </if>
     </select>
 
@@ -89,30 +89,30 @@
     </select>
 
     <insert id="insertOneUser" parameterType="com.mzj.im.model.po.UserPO">
-        INSERT INTO t_user (username, password, nick_name, email) VALUES (#{username}, #{password}, #{nickName}, #{email})
+        INSERT INTO t_user (username, password, nickname, email) VALUES (#{username}, #{password}, #{nickname}, #{email})
     </insert>
 
     <update id="updateOneUserByUsername" parameterType="com.mzj.im.model.po.UserPO">
         <if test='username!=null'>
             UPDATE t_user
             <set>
-                <if test='nick_name!=null'>
-                    nick_name = #{nickName},
+                <if test='nickname!=null'>
+                    nickname = #{nickname},
                 </if>
                 <if test='password!=null'>
-                    nick_name = #{password},
+                    nickname = #{password},
                 </if>
                 <if test='photo!=null'>
-                    nick_name = #{photo},
+                    nickname = #{photo},
                 </if>
                 <if test='sign!=null'>
-                    nick_name = #{sign},
+                    nickname = #{sign},
                 </if>
                 <if test='email!=null'>
-                    nick_name = #{email},
+                    nickname = #{email},
                 </if>
                 <if test='is_delete!=null'>
-                    nick_name = #{nickName},
+                    nickname = #{nickname},
                 </if>
             </set>
             WHERE username = #{username}

@@ -14,12 +14,6 @@ public class UserRelationBiz {
     @Autowired
     private UserRelationDAO userRelationDAO;
 
-    public Set<Long> getUserRelationId(long userId) {
-        Set<Long> set = userRelationDAO.selectUserId1ByUserId2(userId);
-        set.addAll(userRelationDAO.selectUserId2ByUserId1(userId));
-        return set;
-    }
-
     public boolean addUserRelation(long userId1, long userId2) {
         return userRelationDAO.insertUserRelation(userId1, userId2);
     }

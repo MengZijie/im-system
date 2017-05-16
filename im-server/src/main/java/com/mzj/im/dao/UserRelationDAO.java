@@ -1,7 +1,10 @@
 package com.mzj.im.dao;
 
+import com.mzj.im.model.po.UserRelationPo;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -9,7 +12,6 @@ import java.util.Set;
  */
 @Repository
 public interface UserRelationDAO {
-    Set<Long> selectUserId2ByUserId1(Long userId);
-    Set<Long> selectUserId1ByUserId2(Long userId);
+    List<UserRelationPo> selectFriendList(@Param("userId") Long userId);
     boolean insertUserRelation(Long userId1, Long userId2);
 }

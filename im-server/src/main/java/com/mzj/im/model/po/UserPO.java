@@ -9,7 +9,7 @@ import java.sql.Timestamp;
 public class UserPO implements Serializable {
     private long id;
     private String username;
-    private String nickName;
+    private String nickname;
     private String password;
     private String salt;
     private String photo;
@@ -36,12 +36,12 @@ public class UserPO implements Serializable {
         this.username = username;
     }
 
-    public String getNickName() {
-        return nickName;
+    public String getNickname() {
+        return nickname;
     }
 
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
     public String getPassword() {
@@ -106,5 +106,22 @@ public class UserPO implements Serializable {
 
     public void setIsDelete(Character isDelete) {
         this.isDelete = Character.toUpperCase(isDelete == null ? 'N' : isDelete);
+    }
+
+    @Override
+    public String toString() {
+        return "UserPO{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", password='" + password + '\'' +
+                ", salt='" + salt + '\'' +
+                ", photo='" + photo + '\'' +
+                ", sign='" + sign + '\'' +
+                ", email='" + email + '\'' +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                ", isDelete=" + isDelete +
+                '}';
     }
 }
