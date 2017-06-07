@@ -1,0 +1,32 @@
+page-list-master {
+    ion-card {
+        height: 100px;
+        position: relative;
+        text-align: center;
+        img {
+            left: 0;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+        }
+        .card-content {
+            position: absolute;
+            padding: 10px;
+            top: 0;
+            left: 110px;
+            text-align: left;
+            .card-title {
+                font-size: 1.2em;
+                width: 100%;
+                font-weight: bold;
+                color: #000;
+            }
+            .card-subtitle {
+                margin-top: 20px;
+                font-size: 1.0em;
+                width: 100%;
+                color: #ccc;
+            }
+        }
+    }
+}

@@ -1,5 +1,7 @@
 package com.mzj.im.model.po;
 
+import com.mzj.im.util.ToJSON;
+
 import java.sql.Timestamp;
 
 /**

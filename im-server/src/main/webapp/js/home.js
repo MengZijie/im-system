@@ -4,6 +4,6 @@
 
 $(document).ready(function () {
     connect();
-    doSend();
-    disconnect();
+    // doSend();
+    // disconnect();
 })

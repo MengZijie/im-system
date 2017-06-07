@@ -1,0 +1,24 @@
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>{{ friend.friend.username }}</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+    <div class="item-profile" text-center #profilePic [style.background-image]="'url(' + getImgSrc(friend.friend.photo) + ')'">
+    </div>
+
+    <div class="item-detail" padding>
+        <h2>{{friend.friend.username}}</h2>
+        <div><label>签名:</label><span>{{friend.friend.sign}}</span></div>
+        <div class="operate">
+            <ion-row>
+                <button ion-button ion-col col-5 color="secondary">编辑</button>
+                <button ion-button ion-col offset-1 col-5 (click)="startTalking(friend)">发送信息</button>
+            </ion-row>
+        </div>
+    </div>
+</ion-content>

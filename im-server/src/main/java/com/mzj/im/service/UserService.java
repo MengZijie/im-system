@@ -1,8 +1,10 @@
 package com.mzj.im.service;
 
 import com.mzj.im.biz.UserBiz;
+import com.mzj.im.biz.UserRelationBiz;
 import com.mzj.im.dao.redis.RedisUserDAO;
 import com.mzj.im.model.po.UserPO;
+import com.mzj.im.model.po.UserRelationPo;
 import com.mzj.im.model.vo.UserVO;
 import com.mzj.im.util.dic.OperateResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,12 +22,16 @@ public class UserService {
     private UserBiz userBiz;
 
     @Autowired
+    private UserRelationBiz userRelationBiz;
+
+    @Autowired
     private RedisUserDAO redisUserDAO;
 
-    public UserVO doLogin(String username, String password){
+    public UserVO doLogin(String username, String password) {
         UserVO user = getUserByUsername(username);
-        if(!user.isEmpty() && password.equals(user.getPassword())){
+        if (!user.isEmpty() && password.equals(user.getPassword())) {
             user.setOnline(true);
+//            redisUserDAO.put(user);
             return user;
         }
         return null;
@@ -45,6 +51,10 @@ public class UserService {
 
     public OperateResult updateOneUser(UserPO user) {
         return userBiz.updateOneUserByUsername(user);
+    }
+
+    public List<UserRelationPo> getFriendList(long userId) {
+        return userRelationBiz.getFriendList(userId);
     }
 
 }

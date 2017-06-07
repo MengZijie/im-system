@@ -1,5 +1,7 @@
 package com.mzj.im.model.po;
 
+import net.sf.json.JSONObject;
+
 /**
  * Created by ob on 17-5-2.
  */
@@ -48,6 +50,16 @@ public class UserRelationPo {
 
     public void setFriend(UserPO friend) {
         this.friend = friend;
+    }
+
+    public JSONObject toJSON() {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("id",id);
+        jsonObject.put("primaryUserId",primaryUserId);
+        jsonObject.put("relatedUserId",relatedUserId);
+        jsonObject.put("userCategoryId",userCategoryId);
+        jsonObject.put("friend", friend.toJSON());
+        return jsonObject;
     }
 
     @Override

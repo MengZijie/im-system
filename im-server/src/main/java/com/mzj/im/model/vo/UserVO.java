@@ -2,21 +2,25 @@ package com.mzj.im.model.vo;
 
 import com.mzj.im.model.po.UserPO;
 import com.mzj.im.util.ObjectUtil;
+import com.mzj.im.util.ToJSON;
 import net.sf.json.JSONObject;
 import org.apache.commons.lang.StringUtils;
 
 import java.io.Serializable;
+import java.net.InetSocketAddress;
 
 /**
  * Created by OB on 2017/2/3.
  */
-public class UserVO extends UserPO implements Serializable {
+public class UserVO extends UserPO implements Serializable, ToJSON {
 
     private boolean empty;
 
-    public boolean online;
+    private boolean online;
 
-    public boolean lock;
+    private boolean lock;
+
+    private InetSocketAddress address;
 
     public UserVO() {
         super();
@@ -80,10 +84,26 @@ public class UserVO extends UserPO implements Serializable {
         return this;
     }
 
+    public InetSocketAddress getAddress() {
+        return address;
+    }
+
+    public void setAddress(InetSocketAddress address) {
+        this.address = address;
+    }
+
     public JSONObject toJSON() {
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("id", getId());
-        jsonObject.put("username", getUsername());
+        JSONObject jsonObject = super.toJSON();
         return jsonObject;
+    }
+
+    @Override
+    public String toString() {
+        return "UserVO{" +
+                "empty=" + empty +
+                ", online=" + online +
+                ", lock=" + lock +
+                ", address=" + address +
+                "} " + super.toString();
     }
 }

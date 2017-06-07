@@ -1,0 +1,80 @@
+{
+    "BACK_BUTTON_TEXT": "后退",
+
+    "NAME": "姓名",
+    "EMAIL": "邮箱",
+    "USERNAME": "用户名",
+    "PASSWORD": "密码",
+    "LOGIN": "登录",
+    "SIGNUP": "注册",
+
+    "TAB1_TITLE": "联系人",
+    "TAB2_TITLE": "搜索",
+    "TAB3_TITLE": "主页",
+
+    "MAP_TITLE": "Map",
+
+    "TUTORIAL_SKIP_BUTTON": "跳过",
+    "TUTORIAL_CONTINUE_BUTTON": "继续",
+
+
+    "TUTORIAL_SLIDE1_TITLE": "欢迎使用 IM JLU",
+    "TUTORIAL_SLIDE1_DESCRIPTION": "<b>IM JLU</b> 是为广大校友开发，方便校内师生交流，公告传播的多平台即时通讯系统。",
+
+    "TUTORIAL_SLIDE2_TITLE": "How to use the Super Starter",
+    "TUTORIAL_SLIDE2_DESCRIPTION": "Assemble the various page types you want and remove the ones you don't. We've provided many common mobile app page layouts, like login and signup pages, tabs, and this tutorial page.",
+
+    "TUTORIAL_SLIDE3_TITLE": "Getting Started",
+    "TUTORIAL_SLIDE3_DESCRIPTION": "Need help? Check out the Super Starter README for a full tutorial",
+
+    "TUTORIAL_SLIDE4_TITLE": "Ready to Play?",
+
+    "WELCOME_INTRO": "The starting point for your next great Ionic app",
+
+    "SETTINGS_TITLE": "设置",
+    "SETTINGS_OPTION1": "操作 1",
+    "SETTINGS_OPTION2": "操作 2",
+    "SETTINGS_OPTION3": "操作 3",
+    "SETTINGS_OPTION4": "操作 4",
+    "SETTINGS_PROFILE_BUTTON": "Edit Profile",
+    "SETTINGS_PAGE_PROFILE": "Edit Profile",
+
+    "HOME_TITLE": "主页",
+
+
+    "WELCOME_TITLE": "欢迎使用",
+
+    "LOGIN_TITLE": "登录",
+    "LOGIN_ERROR": "登录失败，请确认您的账户信息",
+    "LOGIN_BUTTON": "登录",
+    "SIGNUP_TITLE": "注册",
+    "SIGNUP_ERROR": "创建用户失败，请确认您填写的信息并重新提交",
+    "SIGNUP_BUTTON": "注册",
+
+    "LIST_MASTER_TITLE": "联系人",
+
+    "ITEM_CREATE_TITLE": "新联系人",
+    "ITEM_CREATE_CHOOSE_IMAGE": "添加图片",
+
+    "ITEM_NAME_PLACEHOLDER": "姓名",
+    "ITEM_ABOUT_PLACEHOLDER": "关于",
+
+    "DONE_BUTTON": "提交",
+    "CANCEL_BUTTON": "取消",
+    "DELETE_BUTTON": "删除",
+
+    "CARDS_TITLE": "社会",
+
+    "SEARCH_TITLE": "搜索",
+    "SEARCH_PLACEHOLDER": "搜索联系人",
+
+    "HOME_EDIT_TITLE": "编辑信息",
+    "HOME_EDIT_PHOTO_PLACEHOLDER": "修改头像",
+    "HOME_EDIT_USERNAME_PLACEHOLDER": "用户名",
+    "HOME_EDIT_NICKNAME_PLACEHOLDER": "昵称",
+    "HOME_EDIT_SIGN_PLACEHOLDER": "签名",
+    "HOME_EDIT_EMAIL_PLACEHOLDER": "邮箱",
+    "UPLOAD_FILE_ERROR": "文件上传出错",
+
+    "SUBMIT": "提交"
+}

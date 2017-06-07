@@ -18,7 +18,7 @@ public class IOUtil {
         if (StringUtils.isNotBlank(filename)) {
             String[] parts = filename.split("/");
             filename = parts[parts.length - 1];
-            parts = filename.split(".");
+            parts = filename.split("\\.");
             if(parts.length > 1){
                 String suffix = parts[parts.length -1];
                 return StringUtils.lowerCase(suffix);

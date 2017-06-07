@@ -1,5 +1,8 @@
 package com.mzj.im.model.po;
 
+import net.sf.json.JSONObject;
+import org.apache.commons.lang.StringUtils;
+
 import java.io.Serializable;
 import java.sql.Timestamp;
 
@@ -19,14 +22,29 @@ public class UserPO implements Serializable {
     private Timestamp updateTime;
     private Character isDelete;
 
+    public JSONObject toJSON() {
+        JSONObject jsonObject=new JSONObject();
+        jsonObject.put("id", id);
+        jsonObject.put("username", username);
+        jsonObject.put("nickname", nickname);
+        jsonObject.put("password", null);
+        jsonObject.put("salt", null);
+        jsonObject.put("photo", photo);
+        jsonObject.put("sign", sign);
+        jsonObject.put("email", email);
+        jsonObject.put("createTime", createTime);
+        jsonObject.put("updateTime", updateTime);
+        return jsonObject;
+    }
+
     public long getId() {
         return id;
     }
 
+
     public void setId(long id) {
         this.id = id;
     }
-
 
     public String getUsername() {
         return username;
@@ -37,6 +55,9 @@ public class UserPO implements Serializable {
     }
 
     public String getNickname() {
+        if(StringUtils.isEmpty(nickname)) {
+            nickname = username;
+        }
         return nickname;
     }
 

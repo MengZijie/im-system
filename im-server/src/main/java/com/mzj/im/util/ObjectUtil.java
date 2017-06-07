@@ -12,7 +12,7 @@ public final class ObjectUtil {
     }
 
     public static boolean isNotNull(Object o) {
-        return !isNull(0);
+        return !isNull(o);
     }
 
     public static boolean removeElementFromMap(Map map, Object key) {

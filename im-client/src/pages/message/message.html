@@ -1,0 +1,31 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>{{item.name}}</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content id="message-contant">
+    <ion-list>
+        <ion-card ion-item class="get-message">
+            <img [src]="item.profilePic" />
+            <div class="card-content">
+                hello
+            </div>
+        </ion-card>
+        <ion-card ion-item class="get-message">
+            <img [src]="item.profilePic" />
+            <div class="card-content">
+                world
+            </div>
+        </ion-card>
+
+        <ion-card ion-item class="send-message">
+            <div>
+                <img src="../assets/img/speakers/eagle.jpg" />
+                <div class="card-content">
+                    hello world
+                </div>
+            </div>
+        </ion-card>
+    </ion-list>
+</ion-content>

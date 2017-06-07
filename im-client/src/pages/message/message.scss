@@ -1,0 +1,75 @@
+page-message {
+    ion-header {
+        margin-bottom: 15px;
+    }
+    #message-contant {
+        padding: 10px;
+        .get-message {
+            position: relative;
+            text-align: center;
+            background: #FFCC66;
+            padding-left: 10px;
+            padding-right: 10px;
+            margin-bottom: 15px;
+            width: 90%;
+            border-top-left-radius: 25px;
+            border-top-right-radius: 25px;
+            border-bottom-right-radius: 25px;
+            img {
+                float: left;
+                width: 50px;
+                height: 50px;
+                border-top-left-radius: 25px;
+                border-top-right-radius: 25px;
+                border-bottom-right-radius: 25px;
+            }
+            .card-content {
+                float: left;
+                padding-left: 10px;
+                width: 70%;
+                top: 0;
+                left: 60px;
+                text-align: left;
+                font-size: 1.2em;
+                font-weight: bold;
+                color: #000;
+                word-break: break-all;
+            }
+        }
+        .send-message {
+            position: relative;
+            div {
+                float: right;
+                text-align: center;
+                background: #FFCC66;
+                padding-left: 10px;
+                padding-right: 10px;
+                margin-bottom: 15px;
+                width: 90%;
+                border-top-left-radius: 25px;
+                border-top-right-radius: 25px;
+                border-bottom-left-radius: 25px;
+                img {
+                    float: right;
+                    width: 50px;
+                    height: 50px;
+                    border-top-left-radius: 25px;
+                    border-top-right-radius: 25px;
+                    border-bottom-left-radius: 25px;
+                }
+                .card-content {
+                    float: right;
+                    padding-left: 10px;
+                    width: 70%;
+                    top: 0;
+                    left: 60px;
+                    text-align: left;
+                    font-size: 1.2em;
+                    font-weight: bold;
+                    color: #000;
+                    word-break: break-all;
+                }
+            }
+        }
+    }
+}

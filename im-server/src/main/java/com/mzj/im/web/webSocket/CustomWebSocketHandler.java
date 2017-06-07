@@ -1,6 +1,5 @@
 package com.mzj.im.web.webSocket;
 
-import com.mzj.im.dao.redis.WebSocketDAO;
 import com.mzj.im.model.vo.MessageVO;
 import com.mzj.im.model.vo.UserVO;
 import com.mzj.im.service.MessageService;
@@ -24,9 +23,6 @@ public class CustomWebSocketHandler implements WebSocketHandler {
 
     @Autowired
     private MessageService messageService;
-
-    @Autowired
-    private WebSocketDAO webSocketDAO;
 
     private static final Map<Long, WebSocketSession> userWebSocketSessionMap;
 

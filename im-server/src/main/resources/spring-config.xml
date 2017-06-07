@@ -16,12 +16,13 @@
 
     <!-- 配置文件注入 -->
     <context:property-placeholder location="classpath:config.properties"/>
+    <context:annotation-config/>
 
     <bean class="com.mzj.im.util.SpringUtils"/>
     <bean id="projectConfig" class="com.mzj.im.util.dic.ProjectConfig">
         <property name="configs">
             <props>
-                <prop key="fileUploadPath">${fileUploadPath}</prop>
+                <prop key="imgUploadPath">${imgUploadPath}</prop>
             </props>
         </property>
     </bean>
@@ -29,7 +30,7 @@
     <import resource="classpath:spring-config-mybatis.xml"/>
     <import resource="classpath:spring-config-redis.xml"/>
     <import resource="classpath:spring-config-session.xml"/>
-    <!--<import resource="spring-config-socket.xml"/>-->
+    <import resource="classpath:spring-config-websocket.xml"/>
 
     <context:component-scan base-package="com.mzj.im"/>
 </beans>

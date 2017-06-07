@@ -1,0 +1,91 @@
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>{{ pageTitle }}</ion-title>
+        <ion-buttons end>
+            <button ion-button icon-only (click)="edit()">
+            <ion-icon name="create"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+    <!--<div class="item-profile" text-center #profilePic [style.background-image]="'url(' + getImgSrc(account.photo) + ')'">
+    </div>
+
+    <div class="item-detail" padding>
+        <h2>{{account.username}}</h2>
+        <div><label>签名:</label><span>{{account.sign}}</span></div>
+    </div>-->
+    <ion-card>
+        <img class="item-profile" text-center #profilePic [style.background-image]="'url(' + getImgSrc(account.photo) + ')'" />
+        <ion-card-content>
+            <ion-card-title>
+                {{account.username}}
+            </ion-card-title>
+            <p>
+                用户名:{{account.username}}
+            </p>
+            <p>
+                签名:{{account.sign}}
+            </p>
+            <p>
+                邮箱:{{account.email}}
+            </p>
+        </ion-card-content>
+        <ion-row>
+            <ion-col>
+                <button ion-button icon-left clear small>
+                  <ion-icon name="thumbs-up"></ion-icon>
+                  <div>12 Like</div>
+                </button>
+            </ion-col>
+            <ion-col>
+                <button ion-button icon-left clear small>
+                  <ion-icon name="thumbs-down"></ion-icon>
+                  <div>4 Dislike</div>
+                </button>
+            </ion-col>
+        </ion-row>
+    </ion-card>
+</ion-content>
+
+<!--<ion-content>
+
+  <form [formGroup]="form" *ngIf="settingsReady">
+    <ion-list *ngIf="page == 'main'">
+      <ion-item>
+        <ion-label>{{ 'SETTINGS_OPTION1' | translate }}</ion-label>
+        <ion-toggle formControlName="option1"></ion-toggle>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>{{ 'SETTINGS_OPTION2' | translate }}</ion-label>
+        <ion-input formControlName="option2"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>{{ 'SETTINGS_OPTION3' | translate }}</ion-label>
+        <ion-select formControlName="option3">
+          <ion-option value="1" checked="true">1</ion-option>
+          <ion-option value="2">2</ion-option>
+          <ion-option value="3">3</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <button ion-item [navPush]="subSettings" [navParams]="profileSettings">
+        {{ 'SETTINGS_PROFILE_BUTTON' | translate }}
+      </button>
+    </ion-list>
+
+    <ion-list *ngIf="page == 'profile'">
+      <ion-item>
+        <ion-label>{{ 'SETTINGS_OPTION4' | translate }}</ion-label>
+        <ion-input formControlName="option4"></ion-input>
+      </ion-item>
+    </ion-list>
+  </form>
+
+</ion-content>-->

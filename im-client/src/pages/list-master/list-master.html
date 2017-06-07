@@ -1,0 +1,44 @@
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>{{ 'LIST_MASTER_TITLE' | translate }}</ion-title>
+
+        <ion-buttons end>
+            <button ion-button icon-only (click)="addItem()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+        </ion-buttons>
+    </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+    <ion-searchbar (ionInput)="getFriendList($event)" placeholder="{{ 'SEARCH_PLACEHOLDER' | translate }}"></ion-searchbar>
+    <ion-list>
+        <ion-item-sliding *ngFor="let item of currentFriendList">
+
+            <ion-card ion-item (click)="openItem(item)">
+                <img [src]="getImgSrc(item.friend.photo)" />
+                <div class="card-content">
+                    <p class="card-title">{{item.friend.nickname}}</p>
+                    <p class="card-subtitle">{{item.friend.sign}}</p>
+                </div>
+            </ion-card>
+
+            <!--<button ion-item (click)="openItem(item)">
+        <ion-avatar item-start>
+          <img [src]="item.profilePic" />
+        </ion-avatar>
+        <h2>{{item.name}}</h2>
+        <p>{{item.about}}</p>
+        <ion-note item-end *ngIf="item.note">{{item.note}}</ion-note>
+      </button>-->
+
+            <ion-item-options>
+                <button ion-button color="danger" (click)="deleteItem(item)">
+          {{ 'DELETE_BUTTON' | translate }}
+        </button>
+            </ion-item-options>
+        </ion-item-sliding>
+    </ion-list>
+</ion-content>

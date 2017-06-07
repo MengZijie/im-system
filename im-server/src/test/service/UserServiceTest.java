@@ -1,6 +1,10 @@
 package service;
 
+import com.mzj.im.dao.redis.RedisUserDAO;
+import com.mzj.im.model.po.MessagePO;
+import com.mzj.im.model.vo.UserVO;
 import com.mzj.im.service.UserService;
+import com.mzj.im.web.Request.CommonRequest;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,5 +20,15 @@ public class UserServiceTest {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private RedisUserDAO redisUserDAO;
 
+    @Autowired
+    private CommonRequest commonRequest;
+
+    @Test
+    public void testMessageRedirect() {
+        UserVO user = redisUserDAO.get(1L);
+        commonRequest.sendMessageRedirectRequest(user.getAddress(), new MessagePO());
+    }
 }

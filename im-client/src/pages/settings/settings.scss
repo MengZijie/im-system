@@ -1,0 +1,22 @@
+page-settings {
+    .item-profile {
+        width: 100%;
+        background-position: center center;
+        background-size: cover;
+        height: 250px;
+    }
+    .item-detail {
+        width: 100%;
+        background: white;
+        position: absolute;
+        button {
+            width: 40%;
+        }
+    }
+    .card-ios,
+    .card-md p {
+        margin: 0 0 4px;
+        font-size: 1.6rem;
+        color: #666;
+    }
+}

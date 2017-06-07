@@ -1,12 +1,13 @@
 package com.mzj.im.model.vo;
 
 import com.mzj.im.model.po.MessagePO;
+import com.mzj.im.util.ToJSON;
 import net.sf.json.JSONObject;
 
 /**
  * Created by OB on 2017/2/9.
  */
-public class MessageVO extends MessagePO {
+public class MessageVO extends MessagePO implements ToJSON {
     public MessageVO() {
         super();
     }

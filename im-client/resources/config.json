@@ -1,0 +1,5 @@
+{
+    "HOST_PATH": "127.0.0.1:8000",
+    "STATIC_PATH": "/static",
+    "IMG_PATH": "/img"
+}
